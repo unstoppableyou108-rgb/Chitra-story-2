@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chitra Story — Paintings That Tell Stories</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F5EDE1;
+    --cream-2:#FBF7EF;
+    --terracotta:#C1592E;
+    --terracotta-dark:#9C4522;
+    --gold:#C79A44;
+    --green:#34402A;
+    --ink:#2B2118;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Karla',sans-serif;color:var(--ink);background:var(--cream);line-height:1.5;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  .wrap{max-width:1320px;margin:0 auto;padding:0 24px;}
+  .eyebrow{font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--terracotta-dark);font-weight:700;margin-bottom:10px;}
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;color:var(--ink);}
+  em{font-style:italic;color:var(--terracotta);font-weight:500;}
+
+  /* placeholder art */
+  .art{position:relative;overflow:hidden;background:linear-gradient(135deg,#e7c896,#c1592e 55%,#34402a);}
+  .art::after{content:attr(data-label);position:absolute;bottom:10px;left:10px;font-family:'Karla',sans-serif;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.75);background:rgba(43,33,24,.35);padding:4px 8px;}
+
+  /* header */
+  header{background:var(--cream);border-bottom:1px solid rgba(199,154,68,.4);position:sticky;top:0;z-index:50;}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;}
+  .logo{font-family:'Fraunces',serif;font-size:22px;font-weight:600;letter-spacing:-0.01em;}
+  .logo em{color:var(--terracotta);}
+  .navlinks{display:flex;gap:28px;font-size:14px;font-weight:700;list-style:none;}
+  .navlinks a{text-decoration:none;border-bottom:2px solid transparent;padding-bottom:4px;transition:border-color .2s;}
+  .navlinks a:hover{border-color:var(--gold);}
+  .navicons{display:flex;gap:18px;font-size:14px;font-weight:700;}
+  .burger{display:none;font-size:22px;background:none;border:none;cursor:pointer;color:var(--ink);}
+
+  /* hero */
+  .hero{background:var(--cream);padding:64px 0;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center;}
+  .hero-eyebrow{display:flex;align-items:center;gap:10px;}
+  .hero-eyebrow::before{content:'';width:26px;height:1px;background:var(--gold);}
+  h1.hero-title{font-size:clamp(38px,5vw,62px);line-height:1.06;letter-spacing:-0.01em;margin-bottom:22px;}
+  .hero-sub{font-size:17px;opacity:.82;max-width:460px;margin-bottom:34px;}
+  .ctas{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn-primary{font-weight:700;font-size:15px;color:var(--cream);background:var(--terracotta);padding:15px 28px;border-radius:2px;text-decoration:none;display:inline-block;transition:background .2s;}
+  .btn-primary:hover{background:var(--terracotta-dark);}
+  .btn-secondary{font-weight:700;font-size:15px;padding:15px 10px;text-decoration:none;border-bottom:1px solid var(--gold);display:inline-block;}
+  .hero-visual{position:relative;}
+  .hero-frame{aspect-ratio:4/5;border-radius:2px;box-shadow:0 24px 48px -20px rgba(43,33,24,.35);}
+  .placard{position:absolute;left:20px;bottom:20px;background:var(--cream);border:1px solid var(--gold);padding:14px 18px;max-width:78%;box-shadow:0 10px 24px -12px rgba(43,33,24,.4);}
+  .placard-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--terracotta);font-weight:700;margin-bottom:4px;}
+  .placard-text{font-family:'Fraunces',serif;font-style:italic;font-size:14px;line-height:1.4;}
+
+  /* trust bar */
+  .trust{background:var(--green);padding:30px 0;}
+  .trust-row{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+  .trust-item{padding-left:16px;border-left:2px solid var(--gold);}
+  .trust-title{font-family:'Fraunces',serif;font-style:italic;font-size:16px;color:var(--cream);}
+  .trust-sub{font-size:12.5px;color:var(--cream);opacity:.72;}
+
+  /* section heads */
+  .section{padding:72px 0;}
+  .section-head{margin-bottom:36px;}
+  .section-head-row{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:30px;}
+  .section-title{font-size:clamp(28px,3.4vw,40px);max-width:640px;}
+  .view-link{font-weight:700;font-size:14px;text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:2px;white-space:nowrap;}
+
+  /* shop by story */
+  .shop-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .shop-card{position:relative;aspect-ratio:3/4;border-radius:2px;overflow:hidden;text-decoration:none;display:block;}
+  .shop-card img,.shop-card .art{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+  .shop-card:hover img,.shop-card:hover .art{transform:scale(1.05);}
+  .shop-card::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(43,33,24,0) 45%,rgba(43,33,24,.75) 100%);z-index:1;}
+  .shop-label{position:absolute;left:16px;bottom:16px;z-index:2;color:var(--cream);}
+  .shop-label .name{font-family:'Fraunces',serif;font-style:italic;font-size:20px;display:block;}
+  .shop-label .count{font-size:11.5px;letter-spacing:.06em;opacity:.85;}
+
+  /* bestsellers */
+  .best-bg{background:var(--cream-2);}
+  .best-scroll{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(240px,1fr);gap:22px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory;}
+  .best-card{scroll-snap-align:start;text-decoration:none;color:var(--ink);display:block;}
+  .best-imgwrap{position:relative;aspect-ratio:4/5;border-radius:2px;overflow:hidden;background:var(--cream);margin-bottom:12px;}
+  .best-imgwrap img,.best-imgwrap .art{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+  .best-card:hover img,.best-card:hover .art{transform:scale(1.04);}
+  .best-badge{position:absolute;top:12px;left:12px;background:var(--cream);font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--terracotta-dark);padding:5px 9px;z-index:2;}
+  .best-name{font-family:'Fraunces',serif;font-style:italic;font-size:16px;margin-bottom:4px;}
+  .best-price{font-size:13.5px;opacity:.75;}
+
+  /* story drop */
+  .drop{background:var(--green);}
+  .drop-grid{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;}
+  .drop-copy{padding:72px 56px;display:flex;flex-direction:column;justify-content:center;}
+  .drop-eyebrow{color:var(--gold);}
+  .drop-title{font-size:clamp(28px,3.6vw,42px);color:var(--cream);line-height:1.1;margin-bottom:18px;}
+  .drop-title em{color:var(--gold);}
+  .drop-body{font-size:15.5px;line-height:1.65;color:var(--cream);opacity:.8;max-width:420px;margin-bottom:30px;}
+  .drop-btn{font-weight:700;font-size:15px;color:var(--green);background:var(--gold);padding:14px 26px;text-decoration:none;display:inline-block;width:fit-content;border-radius:2px;}
+  .drop-visual{position:relative;min-height:420px;}
+  .drop-visual .art{width:100%;height:100%;}
+
+  /* founder */
+  .founder{text-align:center;max-width:720px;margin:0 auto;}
+  .founder-mark{font-family:'Fraunces',serif;font-size:42px;color:var(--gold);margin-bottom:8px;}
+  .founder-quote{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:clamp(20px,2.4vw,27px);line-height:1.45;margin-bottom:28px;}
+  .founder-sign{font-weight:700;font-size:14px;}
+  .founder-role{font-size:12.5px;opacity:.65;margin-top:2px;}
+
+  /* testimonials */
+  .reviews-head{text-align:center;margin-bottom:40px;}
+  .reviews-head .eyebrow{justify-content:center;display:block;}
+  .stars{color:var(--gold);font-size:18px;margin-top:10px;letter-spacing:2px;}
+  .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .review-card{background:var(--cream);padding:26px;border-top:3px solid var(--terracotta);}
+  .review-quote{font-family:'Fraunces',serif;font-style:italic;font-size:15.5px;line-height:1.55;margin-bottom:16px;}
+  .review-meta{font-size:12.5px;opacity:.7;}
+  .review-meta strong{opacity:1;}
+
+  /* faq */
+  .faq-wrap{max-width:780px;margin:0 auto;}
+  .faq-wrap .eyebrow, .faq-wrap h2{text-align:center;}
+  .faq-wrap h2{margin-bottom:36px;}
+  details{border-bottom:1px solid var(--gold);padding:18px 0;}
+  summary{font-weight:700;font-size:15.5px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;}
+  summary::-webkit-details-marker{display:none;}
+  summary::after{content:'+';font-family:'Fraunces',serif;font-size:20px;color:var(--terracotta);margin-left:12px;}
+  details[open] summary::after{content:'−';}
+  .faq-answer{font-size:14.5px;line-height:1.6;opacity:.8;margin-top:12px;max-width:620px;}
+
+  /* footer */
+  footer{background:var(--green);color:var(--cream);padding:60px 0 30px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;margin-bottom:40px;}
+  .footer-logo{font-family:'Fraunces',serif;font-size:20px;font-weight:600;margin-bottom:12px;}
+  .footer-logo em{color:var(--gold);}
+  .footer-desc{font-size:13.5px;opacity:.7;max-width:280px;}
+  .footer-col h4{font-family:'Karla',sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+  .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+  .footer-col a{font-size:13.5px;text-decoration:none;opacity:.8;}
+  .footer-col a:hover{opacity:1;text-decoration:underline;}
+  .footer-bottom{border-top:1px solid rgba(199,154,68,.3);padding-top:22px;font-size:12.5px;opacity:.65;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+
+  @media (max-width:900px){
+    .hero-grid,.drop-grid{grid-template-columns:1fr;}
+    .hero-visual{order:-1;}
+    .drop-copy{padding:48px 24px;order:2;}
+    .drop-visual{order:1;min-height:280px;}
+    .shop-grid{grid-template-columns:repeat(2,1fr);}
+    .trust-row{grid-template-columns:repeat(2,1fr);gap:20px;}
+    .reviews-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .navlinks{display:none;}
+    .burger{display:block;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo">Chitra <em>Story</em></div>
+    <ul class="navlinks">
+      <li><a href="#shop">Shop by Story</a></li>
+      <li><a href="#best">Best Sellers</a></li>
+      <li><a href="#drop">New Drop</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="navicons">
+      <a href="#" aria-label="Search">Search</a>
+      <a href="#" aria-label="Account">Account</a>
+      <a href="#" aria-label="Cart">Cart (0)</a>
+    </div>
+    <button class="burger" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow hero-eyebrow">Chitra Story · Bombay</div>
+      <h1 class="hero-title">Every wall has a story.<br>We just <em>paint it.</em></h1>
+      <p class="hero-sub">Hand-finished paintings built around a single narrative, made for Indian homes. Choose the story before you choose the frame.</p>
+      <div class="ctas">
+        <a href="#shop" class="btn-primary">Browse the stories</a>
+        <a href="#founder" class="btn-secondary">How we tell a story</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="art hero-frame" data-label="Add hero image"></div>
+      <div class="placard">
+        <div class="placard-label">The story</div>
+        <div class="placard-text">Painted after three monsoons in a Konkan village, where the artist grew up watching boats return at dusk.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="wrap trust-row">
+    <div class="trust-item"><div class="trust-title">Hand-finished</div><div class="trust-sub">Brushed by hand, not printed flat</div></div>
+    <div class="trust-item"><div class="trust-title">Story card included</div><div class="trust-sub">Every piece ships with its origin note</div></div>
+    <div class="trust-item"><div class="trust-title">5-7 day delivery</div><div class="trust-sub">Ready to hang, pan-India</div></div>
+    <div class="trust-item"><div class="trust-title">Easy returns</div><div class="trust-sub">Report within 24 hrs of delivery</div></div>
+  </div>
+</section>
+
+<section class="section" id="shop">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Begin with the room</div>
+      <h2 class="section-title">Six rooms. Six kinds of <em>stories.</em></h2>
+    </div>
+    <div class="shop-grid">
+      <a href="#" class="shop-card"><div class="art" data-label="Living Room"></div><div class="shop-label"><span class="name">Living Room</span><span class="count">62 stories</span></div></a>
+      <a href="#" class="shop-card"><div class="art" data-label="Bedroom"></div><div class="shop-label"><span class="name">Bedroom</span><span class="count">48 stories</span></div></a>
+      <a href="#" class="shop-card"><div class="art" data-label="Pooja Corner"></div><div class="shop-label"><span class="name">Pooja Corner</span><span class="count">31 stories</span></div></a>
+      <a href="#" class="shop-card"><div class="art" data-label="Study & Office"></div><div class="shop-label"><span class="name">Study & Office</span><span class="count">27 stories</span></div></a>
+    </div>
+  </div>
+</section>
+
+<section class="section best-bg" id="best">
+  <div class="wrap">
+    <div class="section-head-row">
+      <div>
+        <div class="eyebrow">Most collected</div>
+        <h2 class="section-title">The stories people keep coming <em>back to.</em></h2>
+      </div>
+      <a href="#" class="view-link">View all →</a>
+    </div>
+    <div class="best-scroll">
+      <a href="#" class="best-card"><div class="best-imgwrap"><div class="art" data-label="Painting 01"></div><span class="best-badge">Story piece</span></div><div class="best-name">The Boatman's Return</div><div class="best-price">From ₹3,049</div></a>
+      <a href="#" class="best-card"><div class="best-imgwrap"><div class="art" data-label="Painting 02"></div><span class="best-badge">Story piece</span></div><div class="best-name">Marigold Morning</div><div class="best-price">From ₹3,355</div></a>
+      <a href="#" class="best-card"><div class="best-imgwrap"><div class="art" data-label="Painting 03"></div><span class="best-badge">Story piece</span></div><div class="best-name">Grandmother's Courtyard</div><div class="best-price">From ₹3,049</div></a>
+      <a href="#" class="best-card"><div class="best-imgwrap"><div class="art" data-label="Painting 04"></div><span class="best-badge">Story piece</span></div><div class="best-name">Rain Over Marine Drive</div><div class="best-price">From ₹4,298</div></a>
+      <a href="#" class="best-card"><div class="best-imgwrap"><div class="art" data-label="Painting 05"></div><span class="best-badge">Story piece</span></div><div class="best-name">The Last Diya</div><div class="best-price">From ₹3,049</div></a>
+    </div>
+  </div>
+</section>
+
+<section class="drop" id="drop">
+  <div class="wrap drop-grid" style="max-width:1320px;padding:0;">
+    <div class="drop-copy">
+      <div class="eyebrow drop-eyebrow">New capsule</div>
+      <h2 class="drop-title">Ghar Ki Kahani: a 14-piece collection about <em>home.</em></h2>
+      <p class="drop-body">Fourteen paintings, each carrying a note written by the artist about the home they had in mind while painting it. Released for two weeks, then retired.</p>
+      <a href="#" class="drop-btn">Explore the collection</a>
+    </div>
+    <div class="drop-visual"><div class="art" data-label="Drop collection image"></div></div>
+  </div>
+</section>
+
+<section class="section" id="founder">
+  <div class="wrap founder">
+    <div class="founder-mark">"</div>
+    <p class="founder-quote">We started Chitra Story because most wall art skips the part that actually matters — the reason it was painted. Every piece on this site comes with the story behind it, written by the artist, not marketing copy.</p>
+    <div class="founder-sign">The Chitra Story team</div>
+    <div class="founder-role">Founders, Chitra Story</div>
+  </div>
+</section>
+
+<section class="section best-bg">
+  <div class="wrap">
+    <div class="reviews-head">
+      <div class="eyebrow">Verified buyers</div>
+      <h2 class="section-title" style="margin:0 auto;">What real collectors say.</h2>
+      <div class="stars">★★★★★</div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card"><p class="review-quote">The story card that came with the painting made it feel like a gift, not just decor. We read it out loud before hanging it up.</p><div class="review-meta"><strong>Priya S.</strong> · Chennai</div></div>
+      <div class="review-card"><p class="review-quote">Framing quality is far better than what I expected for the price. Delivered in four days.</p><div class="review-meta"><strong>Arjun M.</strong> · Pune</div></div>
+      <div class="review-card"><p class="review-quote">Bought this for my parents' anniversary. The story behind the painting matched exactly what I wanted to say.</p><div class="review-meta"><strong>Divya R.</strong> · Hyderabad</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="wrap faq-wrap">
+    <div class="eyebrow">Before you buy</div>
+    <h2>Honest answers, no fine print.</h2>
+    <details open>
+      <summary>How fast does it ship?</summary>
+      <div class="faq-answer">Production starts within 24 hours of order. Most pieces are on your wall within 5-7 working days, pan-India.</div>
+    </details>
+    <details>
+      <summary>What comes with the painting?</summary>
+      <div class="faq-answer">Every piece ships ready to hang, along with a printed story card describing the idea and the artist behind it.</div>
+    </details>
+    <details>
+      <summary>Can I request a custom size or story?</summary>
+      <div class="faq-answer">Yes. Use the custom order form to describe the story you have in mind, and our team will get back within a day.</div>
+    </details>
+    <details>
+      <summary>What's your return policy?</summary>
+      <div class="faq-answer">If the piece arrives damaged or isn't what you expected, let us know within 24 hours of delivery and we'll sort it out.</div>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Chitra <em>Story</em></div>
+        <p class="footer-desc">Paintings that tell stories — hand-finished art for Indian homes, curated one narrative at a time.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul><li><a href="#">New Arrivals</a></li><li><a href="#">Best Sellers</a></li><li><a href="#">Custom Art</a></li><li><a href="#">Gallery Sets</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Chitra Story</h4>
+        <ul><li><a href="#">About Us</a></li><li><a href="#">Our Studio</a></li><li><a href="#">Contact</a></li><li><a href="#">Journal</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul><li><a href="#">FAQs</a></li><li><a href="#">Shipping Policy</a></li><li><a href="#">Return Policy</a></li><li><a href="#">Privacy Policy</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Chitra Story. All rights reserved.</span>
+      <span>Made in Bombay</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
