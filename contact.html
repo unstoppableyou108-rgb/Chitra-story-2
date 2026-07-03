@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Chitra Story</title>
+<meta name="description" content="Get in touch with Chitra Story for orders, custom sizing, or trade & bulk enquiries.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F5F0E6; --cream-deep:#ECE4D4; --terracotta:#C1613D; --terracotta-deep:#A44E30;
+    --gold:#C9A24B; --green:#2F4B3C; --ink:#262019; --ink-soft:#5B5346;
+    --card:#FFFDF8; --shadow:0 18px 40px rgba(38,32,25,0.10); --radius:2px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--cream); color:var(--ink); font-family:'Karla', sans-serif; line-height:1.6;}
+  h1,h2,h3,h4{font-family:'Fraunces', serif; font-weight:500; color:var(--ink); line-height:1.15;}
+  em{font-style:italic; color:var(--terracotta);}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  .eyebrow{font-family:'Karla',sans-serif; text-transform:uppercase; letter-spacing:0.14em; font-size:0.72rem; font-weight:700; color:var(--terracotta);}
+  .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:14px 30px; border:1.5px solid var(--ink); border-radius:var(--radius); font-weight:700; font-size:0.85rem; letter-spacing:0.03em; background:transparent; cursor:pointer; transition:all .25s ease;}
+  .btn:hover{background:var(--ink); color:var(--cream);}
+  .btn-solid{background:var(--terracotta); color:#fff; border-color:var(--terracotta); width:100%;}
+  .btn-solid:hover{background:var(--terracotta-deep); border-color:var(--terracotta-deep);}
+
+  header{position:sticky; top:0; z-index:100; background:rgba(245,240,230,0.92); backdrop-filter:blur(8px); border-bottom:1px solid rgba(38,32,25,0.08);}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:18px 32px; max-width:1180px; margin:0 auto;}
+  .logo{font-family:'Fraunces', serif; font-size:1.4rem; font-weight:500;}
+  .navlinks{display:flex; align-items:center; gap:38px;}
+  .navlinks a{font-size:0.85rem; font-weight:600; letter-spacing:0.03em; text-transform:uppercase; position:relative; padding-bottom:4px;}
+  .navlinks a.active{color:var(--terracotta);}
+  .navlinks a::after{content:""; position:absolute; left:0; bottom:0; width:0; height:1.5px; background:var(--terracotta); transition:width .25s ease;}
+  .navlinks a:hover::after{width:100%;}
+  .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;}
+  .burger span{width:24px; height:2px; background:var(--ink);}
+
+  .page-head{padding:70px 0 50px; text-align:center;}
+  .page-head .eyebrow{display:block; margin-bottom:14px;}
+  .page-head h1{font-size:clamp(2rem,4vw,2.8rem); margin-bottom:14px;}
+  .page-head p{color:var(--ink-soft); max-width:520px; margin:0 auto;}
+
+  .contact-grid{display:grid; grid-template-columns:1fr 1.2fr; gap:50px; padding-bottom:90px;}
+  .info-card{background:var(--ink); color:var(--cream); border-radius:var(--radius); padding:44px;}
+  .info-card h3{color:var(--cream); font-size:1.3rem; margin-bottom:18px;}
+  .info-card p{color:#C9C2B2; margin-bottom:28px; font-size:0.92rem;}
+  .info-row{display:flex; gap:14px; align-items:flex-start; margin-bottom:22px;}
+  .info-row .ic{width:20px; height:20px; flex-shrink:0; margin-top:2px; color:var(--gold);}
+  .info-row .label{font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; color:#9B9484; margin-bottom:2px;}
+  .info-row .val{font-size:0.95rem; color:var(--cream);}
+  .socials{display:flex; gap:14px; margin-top:32px;}
+  .socials a{width:38px; height:38px; border:1px solid rgba(255,255,255,0.25); border-radius:50%; display:flex; align-items:center; justify-content:center;}
+
+  .form-card{background:var(--card); border-radius:var(--radius); padding:44px; box-shadow:var(--shadow);}
+  .form-card h3{font-size:1.3rem; margin-bottom:8px;}
+  .form-card > p{color:var(--ink-soft); font-size:0.9rem; margin-bottom:28px;}
+  .field{margin-bottom:20px;}
+  .field label{display:block; font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; margin-bottom:8px; color:var(--ink-soft);}
+  .field input, .field textarea, .field select{
+    width:100%; padding:13px 16px; border:1.5px solid rgba(38,32,25,0.2); border-radius:var(--radius);
+    font-family:'Karla', sans-serif; font-size:0.92rem; background:var(--cream); color:var(--ink);
+  }
+  .field input:focus, .field textarea:focus, .field select:focus{outline:2px solid var(--terracotta); outline-offset:1px;}
+  .field textarea{resize:vertical; min-height:110px;}
+  .row-2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+
+  .map-band{padding-bottom:90px;}
+  .map-visual{
+    aspect-ratio:16/5; border-radius:var(--radius);
+    background:repeating-linear-gradient(135deg, #ECE4D4, #ECE4D4 18px, #E1D6C0 18px, #E1D6C0 36px);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:var(--shadow);
+  }
+  .map-visual .pin{
+    text-align:center; background:var(--card); padding:22px 32px; border-radius:var(--radius); box-shadow:var(--shadow);
+  }
+  .map-visual .pin h4{font-size:1.1rem; margin-bottom:4px;}
+  .map-visual .pin span{font-size:0.82rem; color:var(--ink-soft);}
+
+  .faq{padding-bottom:90px;}
+  .section-head{max-width:600px; margin:0 auto 44px; text-align:center;}
+  .section-head .eyebrow{display:block; margin-bottom:14px;}
+  .faq-item{border-bottom:1px solid rgba(38,32,25,0.12); padding:22px 0;}
+  .faq-item h4{font-size:1.02rem; font-weight:600; font-family:'Karla', sans-serif; cursor:pointer; display:flex; justify-content:space-between; align-items:center;}
+  .faq-item p{color:var(--ink-soft); font-size:0.9rem; margin-top:12px; display:none;}
+  .faq-item.open p{display:block;}
+  .faq-item .plus{font-family:'Fraunces', serif; font-size:1.3rem; color:var(--terracotta);}
+
+  footer{background:var(--ink); color:#C9C2B2; padding:64px 0 26px;}
+  .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; margin-bottom:48px;}
+  footer h5{color:var(--cream); font-size:0.8rem; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:18px;}
+  footer .logo{color:var(--cream); margin-bottom:14px;}
+  footer p{font-size:0.85rem; max-width:280px; margin-bottom:16px;}
+  footer ul{list-style:none;}
+  footer li{margin-bottom:10px; font-size:0.86rem;}
+  footer li a:hover{color:var(--gold);}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,0.1); padding-top:22px; display:flex; justify-content:space-between; font-size:0.78rem; flex-wrap:wrap; gap:10px;}
+
+  .wa-float{position:fixed; bottom:26px; right:26px; z-index:200; background:#25D366; width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 24px rgba(0,0,0,0.25);}
+
+  @media(max-width:900px){
+    .navlinks{display:none;}
+    .burger{display:flex;}
+    .contact-grid{grid-template-columns:1fr;}
+    .row-2{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="logo">Chitra <em>Story</em></a>
+    <nav class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+    <button class="burger" aria-label="menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="page-head">
+  <div class="wrap">
+    <span class="eyebrow">Talk To The Studio</span>
+    <h1>We read every <em>message ourselves.</em></h1>
+    <p>Questions about a piece, custom sizing, or a trade order — reach out and we'll get back within a day.</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="contact-grid">
+    <div class="info-card">
+      <h3>Get In Touch</h3>
+      <p>For orders, custom framing, or bulk/trade pricing, message us directly on WhatsApp for the fastest reply.</p>
+
+      <div class="info-row">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1.1.4 2.2.7 3.2a2 2 0 0 1-.5 2.1L8.1 10.2a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c1 .3 2.1.6 3.2.7a2 2 0 0 1 1.7 2z"/></svg>
+        <div><div class="label">Phone / WhatsApp</div><div class="val">+91 00000 00000</div></div>
+      </div>
+      <div class="info-row">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>
+        <div><div class="label">Email</div><div class="val">hello@chitrastory.in</div></div>
+      </div>
+      <div class="info-row">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div><div class="label">Studio</div><div class="val">Pune, Maharashtra, India</div></div>
+      </div>
+      <div class="info-row">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <div><div class="label">Response Time</div><div class="val">Within 24 hours</div></div>
+      </div>
+
+      <div class="socials">
+        <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cream)" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.5" cy="6.5" r="0.8" fill="var(--cream)"/></svg></a>
+        <a href="#" aria-label="Pinterest"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cream)" stroke-width="1.6"><circle cx="12" cy="12" r="9"/></svg></a>
+        <a href="https://wa.me/910000000000" aria-label="WhatsApp"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cream)" stroke-width="1.6"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.5L3 20l1.1-5.4A8.5 8.5 0 1 1 21 11.5z"/></svg></a>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h3>Send Us A Message</h3>
+      <p>Fill this in and we'll follow up by email or WhatsApp, whichever you prefer.</p>
+      <form onsubmit="event.preventDefault(); document.getElementById('formNote').style.display='block'; this.reset();">
+        <div class="row-2">
+          <div class="field">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" required>
+        </div>
+        <div class="field">
+          <label for="topic">This Is About</label>
+          <select id="topic">
+            <option>A piece I'm interested in</option>
+            <option>Custom sizing / framing</option>
+            <option>Trade & bulk pricing</option>
+            <option>Order support</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" required placeholder="Tell us what you're looking for, and any sizing or room details that help."></textarea>
+        </div>
+        <button type="submit" class="btn btn-solid">Send Message</button>
+        <p id="formNote" style="display:none; margin-top:14px; font-size:0.85rem; color:var(--green);">Thanks — we've noted your message and will follow up within a day.</p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="wrap map-band">
+  <div class="map-visual">
+    <div class="pin">
+      <h4>Chitra Story Studio</h4>
+      <span>Pune, Maharashtra · By appointment</span>
+    </div>
+  </div>
+</div>
+
+<section class="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Before You Write In</span>
+      <h2>A few things people <em>usually ask.</em></h2>
+    </div>
+    <div class="narrow" style="max-width:720px; margin:0 auto;">
+      <div class="faq-item">
+        <h4>How long does delivery take? <span class="plus">+</span></h4>
+        <p>Most pieces ship within 5–7 working days across India. Custom sizes may take slightly longer.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Can I get a custom size or frame? <span class="plus">+</span></h4>
+        <p>Yes — mention it in the form above or on WhatsApp and we'll confirm pricing and timelines with you.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Do you offer trade pricing for designers? <span class="plus">+</span></h4>
+        <p>Yes, we work with interior designers and hospitality projects on bulk and trade pricing. Reach out with your project brief.</p>
+      </div>
+      <div class="faq-item">
+        <h4>What if I need to return a piece? <span class="plus">+</span></h4>
+        <p>Let us know within 24 hours of delivery if there's an issue and we'll sort out a replacement or return.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo">Chitra <em>Story</em></div>
+        <p>Hand-finished paintings for Indian homes, each shipped with the story behind it.</p>
+      </div>
+      <div>
+        <h5>Shop</h5>
+        <ul>
+          <li><a href="shop.html">Full Collection</a></li>
+          <li><a href="shop.html">Heritage Edit</a></li>
+          <li><a href="shop.html">Devotional</a></li>
+          <li><a href="contact.html">Custom Sizing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Studio</h5>
+        <ul>
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="contact.html">Trade & Bulk</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Get In Touch</h5>
+        <ul>
+          <li>+91 00000 00000</li>
+          <li>hello@chitrastory.in</li>
+          <li>Pune, Maharashtra</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Chitra Story. All rights reserved.</span>
+      <span>Privacy · Shipping · Terms</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/910000000000" target="_blank" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.5-1.5-1.8-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.1-.5-.1-.1-.6-1.4-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.2L2 22l4.9-1.3C8.4 21.6 10.2 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.2.9.9-3.1-.2-.3C4 14.9 3.6 13.5 3.6 12c0-4.6 3.8-8.4 8.4-8.4s8.4 3.8 8.4 8.4-3.8 8.2-8.4 8.2z"/></svg>
+</a>
+
+<script>
+  document.querySelectorAll('.faq-item h4').forEach(h=>{
+    h.addEventListener('click', ()=>{
+      h.parentElement.classList.toggle('open');
+    });
+  });
+</script>
+
+</body>
+</html>

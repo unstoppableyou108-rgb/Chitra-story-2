@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chitra Story — Paintings That Tell Stories</title>
+<meta name="description" content="Hand-finished paintings for Indian homes, each shipped with the story behind it. Curated art for people who want more than decor.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F5F0E6;
+    --cream-deep:#ECE4D4;
+    --terracotta:#C1613D;
+    --terracotta-deep:#A44E30;
+    --gold:#C9A24B;
+    --green:#2F4B3C;
+    --ink:#262019;
+    --ink-soft:#5B5346;
+    --card:#FFFDF8;
+    --shadow: 0 18px 40px rgba(38,32,25,0.10);
+    --radius: 2px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Karla', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    color:var(--ink);
+    line-height:1.15;
+  }
+  em{font-style:italic; color:var(--terracotta);}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  .eyebrow{
+    font-family:'Karla', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    font-size:0.72rem;
+    font-weight:700;
+    color:var(--terracotta);
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 30px;
+    border:1.5px solid var(--ink);
+    border-radius:var(--radius);
+    font-family:'Karla', sans-serif;
+    font-weight:700;
+    font-size:0.85rem;
+    letter-spacing:0.03em;
+    background:transparent;
+    cursor:pointer;
+    transition:all .25s ease;
+  }
+  .btn:hover{background:var(--ink); color:var(--cream);}
+  .btn-solid{background:var(--terracotta); color:var(--cream); border-color:var(--terracotta);}
+  .btn-solid:hover{background:var(--terracotta-deep); border-color:var(--terracotta-deep); color:#fff;}
+
+  /* ===== HEADER ===== */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(245,240,230,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(38,32,25,0.08);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:1180px; margin:0 auto;
+  }
+  .logo{
+    font-family:'Fraunces', serif; font-size:1.4rem; font-weight:500;
+    letter-spacing:0.01em;
+  }
+  .logo em{font-style:italic;}
+  .navlinks{display:flex; align-items:center; gap:38px;}
+  .navlinks a{
+    font-size:0.85rem; font-weight:600; letter-spacing:0.03em;
+    text-transform:uppercase; position:relative;
+    padding-bottom:4px;
+  }
+  .navlinks a.active{color:var(--terracotta);}
+  .navlinks a::after{
+    content:""; position:absolute; left:0; bottom:0; width:0; height:1.5px;
+    background:var(--terracotta); transition:width .25s ease;
+  }
+  .navlinks a:hover::after{width:100%;}
+  .nav-actions{display:flex; align-items:center; gap:18px;}
+  .icon-btn{width:22px; height:22px; cursor:pointer;}
+  .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;}
+  .burger span{width:24px; height:2px; background:var(--ink);}
+
+  /* ===== HERO ===== */
+  .hero{
+    padding:100px 0 80px;
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:60px;
+    align-items:center;
+  }
+  .hero-copy .eyebrow{margin-bottom:18px; display:block;}
+  .hero h1{font-size:clamp(2.4rem, 4.4vw, 3.6rem); margin-bottom:22px;}
+  .hero p.lede{font-size:1.08rem; color:var(--ink-soft); max-width:480px; margin-bottom:34px;}
+  .hero-actions{display:flex; gap:16px; flex-wrap:wrap;}
+  .hero-visual{
+    position:relative; aspect-ratio:4/5; border-radius:var(--radius);
+    background:
+      linear-gradient(155deg, var(--terracotta) 0%, var(--terracotta) 38%, var(--gold) 39%, var(--gold) 62%, var(--green) 63%, var(--green) 100%);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .hero-visual::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(circle at 30% 25%, rgba(255,255,255,0.18), transparent 55%);
+  }
+  .hero-placard{
+    position:absolute; bottom:22px; left:22px; right:22px;
+    background:var(--card); padding:16px 18px; border-radius:var(--radius);
+    box-shadow:0 10px 24px rgba(0,0,0,0.18);
+    font-size:0.8rem;
+  }
+  .hero-placard .p-title{font-family:'Fraunces', serif; font-size:1rem; margin-bottom:2px;}
+  .hero-placard .p-meta{color:var(--ink-soft); font-size:0.72rem; letter-spacing:0.02em;}
+
+  /* ===== MARQUEE STRIP ===== */
+  .strip{
+    background:var(--ink); color:var(--cream);
+    padding:12px 0; overflow:hidden; white-space:nowrap;
+  }
+  .strip-track{display:inline-flex; gap:60px; animation:scroll 26s linear infinite;}
+  .strip span{font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase; font-weight:600;}
+  @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+  /* ===== SECTION SHARED ===== */
+  section{padding:88px 0;}
+  .section-head{max-width:640px; margin-bottom:52px;}
+  .section-head .eyebrow{display:block; margin-bottom:14px;}
+  .section-head h2{font-size:clamp(1.9rem, 3vw, 2.6rem);}
+  .section-head p{color:var(--ink-soft); margin-top:14px; font-size:1rem;}
+
+  /* ===== MOOD FINDER ===== */
+  .finder{
+    background:var(--cream-deep); border-radius:var(--radius);
+    padding:56px; display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center;
+  }
+  .finder h3{font-size:1.7rem; margin-bottom:14px;}
+  .finder p{color:var(--ink-soft); margin-bottom:26px;}
+  .mood-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px;}
+  .mood-chip{
+    border:1.5px solid var(--ink); border-radius:var(--radius);
+    padding:16px 10px; text-align:center; cursor:pointer;
+    font-size:0.82rem; font-weight:600; background:var(--card);
+    transition:all .2s ease;
+  }
+  .mood-chip:hover, .mood-chip.picked{background:var(--terracotta); border-color:var(--terracotta); color:#fff;}
+  .finder-result{
+    background:var(--card); border-radius:var(--radius); padding:22px;
+    min-height:210px; box-shadow:var(--shadow);
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .finder-result .eyebrow{margin-bottom:10px;}
+  .finder-result h4{font-size:1.2rem; margin-bottom:8px;}
+  .finder-result p{color:var(--ink-soft); font-size:0.9rem;}
+
+  /* ===== STORY CARDS (signature) ===== */
+  .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
+  .story-card{
+    background:var(--card); border-radius:var(--radius); overflow:hidden;
+    box-shadow:var(--shadow); transition:transform .3s ease;
+  }
+  .story-card:hover{transform:translateY(-6px);}
+  .card-art{aspect-ratio:1/1; position:relative;}
+  .card-placard{
+    padding:20px 22px 24px; border-top:1px dashed rgba(38,32,25,0.18);
+  }
+  .card-placard .p-no{font-size:0.68rem; letter-spacing:0.12em; color:var(--terracotta); font-weight:700; text-transform:uppercase; margin-bottom:8px; display:block;}
+  .card-placard h4{font-size:1.15rem; margin-bottom:6px;}
+  .card-placard .p-desc{font-size:0.85rem; color:var(--ink-soft); margin-bottom:12px;}
+  .card-placard .p-price{font-weight:700; font-size:0.95rem;}
+
+  .art-1{background:linear-gradient(135deg,#C1613D,#E4A06C);}
+  .art-2{background:linear-gradient(135deg,#2F4B3C,#5C8067);}
+  .art-3{background:linear-gradient(135deg,#C9A24B,#E9CD8B);}
+  .art-4{background:linear-gradient(135deg,#8A3B2A,#C1613D);}
+  .art-5{background:linear-gradient(135deg,#3D5A47,#2F4B3C);}
+  .art-6{background:linear-gradient(135deg,#B98B2E,#C9A24B);}
+
+  /* ===== SPLIT BAND ===== */
+  .band{background:var(--ink); color:var(--cream);}
+  .band .wrap{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;}
+  .band h2{color:var(--cream);}
+  .band h2 em{color:var(--gold);}
+  .band p{color:#C9C2B2; margin-top:16px; max-width:460px;}
+  .band-stats{display:flex; gap:44px; margin-top:34px;}
+  .band-stats div b{display:block; font-family:'Fraunces',serif; font-size:1.8rem; color:var(--gold);}
+  .band-stats div span{font-size:0.78rem; color:#C9C2B2; text-transform:uppercase; letter-spacing:0.05em;}
+  .band-visual{
+    aspect-ratio:4/3; border-radius:var(--radius);
+    background:repeating-linear-gradient(45deg, #2F4B3C, #2F4B3C 22px, #24382c 22px, #24382c 44px);
+  }
+
+  /* ===== TESTIMONIALS ===== */
+  .quotes{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+  .quote{background:var(--card); border-radius:var(--radius); padding:28px; box-shadow:var(--shadow);}
+  .stars{color:var(--gold); letter-spacing:2px; margin-bottom:14px; font-size:0.9rem;}
+  .quote p{font-size:0.92rem; color:var(--ink); margin-bottom:16px;}
+  .quote .who{font-size:0.8rem; color:var(--ink-soft); font-weight:600;}
+
+  /* ===== NEWSLETTER / CTA ===== */
+  .cta{
+    background:var(--terracotta); color:#fff; text-align:center; border-radius:var(--radius);
+    padding:64px 40px;
+  }
+  .cta h2{color:#fff; font-size:clamp(1.7rem,3vw,2.3rem); margin-bottom:14px;}
+  .cta p{color:rgba(255,255,255,0.88); margin-bottom:28px;}
+  .cta .btn{border-color:#fff; color:#fff;}
+  .cta .btn:hover{background:#fff; color:var(--terracotta);}
+
+  /* ===== FOOTER ===== */
+  footer{background:var(--ink); color:#C9C2B2; padding:64px 0 26px;}
+  .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; margin-bottom:48px;}
+  footer h5{font-family:'Karla', sans-serif; color:var(--cream); font-size:0.8rem; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:18px;}
+  footer .logo{color:var(--cream); margin-bottom:14px;}
+  footer p{font-size:0.85rem; max-width:280px; margin-bottom:16px;}
+  footer ul{list-style:none;}
+  footer li{margin-bottom:10px; font-size:0.86rem;}
+  footer li a:hover{color:var(--gold);}
+  .foot-bottom{
+    border-top:1px solid rgba(255,255,255,0.1); padding-top:22px;
+    display:flex; justify-content:space-between; font-size:0.78rem; flex-wrap:wrap; gap:10px;
+  }
+
+  .wa-float{
+    position:fixed; bottom:26px; right:26px; z-index:200;
+    background:#25D366; width:56px; height:56px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 24px rgba(0,0,0,0.25);
+  }
+
+  /* scroll reveal */
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media(max-width:900px){
+    .navlinks, .nav-actions .icon-btn{display:none;}
+    .burger{display:flex;}
+    .hero{grid-template-columns:1fr; padding-top:60px;}
+    .finder{grid-template-columns:1fr; padding:32px;}
+    .grid-3, .quotes{grid-template-columns:1fr;}
+    .band .wrap{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="logo">Chitra <em>Story</em></a>
+    <nav class="navlinks">
+      <a href="index.html" class="active">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <svg class="icon-btn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <svg class="icon-btn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2l1.5 5h9L18 2"/><path d="M3.5 7h17l-1.5 12a2 2 0 0 1-2 1.8H7a2 2 0 0 1-2-1.8L3.5 7z"/></svg>
+      <button class="burger" aria-label="menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap" style="display:grid; grid-template-columns:1.1fr 0.9fr; gap:60px; align-items:center;">
+    <div class="hero-copy">
+      <span class="eyebrow">No. 01 · The Studio Edit</span>
+      <h1>Paintings that <em>tell stories,</em> not just fill walls.</h1>
+      <p class="lede">Every piece we ship carries a placard: the artist, the region, the meaning behind it. Hand-finished for Indian homes, so what hangs on your wall has something to say.</p>
+      <div class="hero-actions">
+        <a href="shop.html" class="btn btn-solid">Browse the Collection →</a>
+        <a href="about.html" class="btn">Our Story</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-placard">
+        <div class="p-title">Ochre Courtyard</div>
+        <div class="p-meta">Warli Tradition · Maharashtra · Hand-finished</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-track">
+    <span>Hand-finished in India</span><span>·</span>
+    <span>Story Card With Every Piece</span><span>·</span>
+    <span>5–7 Day Delivery</span><span>·</span>
+    <span>Made-to-Wall Sizing</span><span>·</span>
+    <span>Hand-finished in India</span><span>·</span>
+    <span>Story Card With Every Piece</span><span>·</span>
+    <span>5–7 Day Delivery</span><span>·</span>
+    <span>Made-to-Wall Sizing</span><span>·</span>
+  </div>
+</div>
+
+<section>
+  <div class="wrap reveal">
+    <div class="finder">
+      <div>
+        <span class="eyebrow">Find Your Story</span>
+        <h3>Not sure what your wall needs?</h3>
+        <p>Tell us the mood of the room, and we'll point you to the piece — and the story — that fits.</p>
+        <div class="mood-grid" id="moodGrid">
+          <div class="mood-chip" data-mood="calm">Calm & Quiet</div>
+          <div class="mood-chip" data-mood="warm">Warm & Rooted</div>
+          <div class="mood-chip" data-mood="bold">Bold Statement</div>
+          <div class="mood-chip" data-mood="devotional">Devotional</div>
+          <div class="mood-chip" data-mood="playful">Playful</div>
+          <div class="mood-chip" data-mood="heritage">Heritage</div>
+        </div>
+      </div>
+      <div class="finder-result" id="finderResult">
+        <span class="eyebrow">Awaiting your mood</span>
+        <h4>Pick a feeling on the left.</h4>
+        <p>We'll surface the collection and one story that matches it — no scrolling through everything.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">No. 02 · This Season's Placards</span>
+      <h2>Six stories, <em>currently</em> in the studio.</h2>
+      <p>A small rotating edit. Each piece ships with its placard — read it before you hang it.</p>
+    </div>
+    <div class="grid-3 reveal">
+      <div class="story-card">
+        <div class="card-art art-1"></div>
+        <div class="card-placard">
+          <span class="p-no">Piece No. 014</span>
+          <h4>Ochre Courtyard</h4>
+          <p class="p-desc">A Warli motif of daily village life, hand-finished in earth tones.</p>
+          <span class="p-price">₹3,200</span>
+        </div>
+      </div>
+      <div class="story-card">
+        <div class="card-art art-2"></div>
+        <div class="card-placard">
+          <span class="p-no">Piece No. 021</span>
+          <h4>Monsoon Green</h4>
+          <p class="p-desc">Deep forest tones inspired by the first rains over the Sahyadris.</p>
+          <span class="p-price">₹3,650</span>
+        </div>
+      </div>
+      <div class="story-card">
+        <div class="card-art art-3"></div>
+        <div class="card-placard">
+          <span class="p-no">Piece No. 009</span>
+          <h4>Gilded Lotus</h4>
+          <p class="p-desc">A devotional study in gold leaf detailing, suited to a pooja corner.</p>
+          <span class="p-price">₹4,100</span>
+        </div>
+      </div>
+      <div class="story-card">
+        <div class="card-art art-4"></div>
+        <div class="card-placard">
+          <span class="p-no">Piece No. 032</span>
+          <h4>Terracotta Bazaar</h4>
+          <p class="p-desc">A market-day scene rendered in warm clay and rust pigments.</p>
+          <span class="p-price">₹3,400</span>
+        </div>
+      </div>
+      <div class="story-card">
+        <div class="card-art art-5"></div>
+        <div class="card-placard">
+          <span class="p-no">Piece No. 041</span>
+          <h4>Sahyadri Dusk</h4>
+          <p class="p-desc">Layered greens at last light, painted from a studio window in Pune.</p>
+          <span class="p-price">₹3,950</span>
+        </div>
+      </div>
+      <div class="story-card">
+        <div class="card-art art-6"></div>
+        <div class="card-placard">
+          <span class="p-no">Piece No. 018</span>
+          <h4>Marigold Morning</h4>
+          <p class="p-desc">A festival-inspired study in gold and saffron, for a bright entryway.</p>
+          <span class="p-price">₹3,300</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:44px;">
+      <a href="shop.html" class="btn">View Full Collection →</a>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap reveal">
+    <div>
+      <span class="eyebrow" style="color:var(--gold);">No. 03 · Why The Placard Matters</span>
+      <h2>Every painting has a <em>before.</em> We ship it with the after.</h2>
+      <p>Most wall art arrives with nothing but a hook. Ours arrives with a small printed card: who made it, where the tradition comes from, and why we chose it. It's a small thing that changes how a room feels.</p>
+      <div class="band-stats">
+        <div><b>250+</b><span>Pieces Placed</span></div>
+        <div><b>40+</b><span>Artist Stories</span></div>
+        <div><b>4.8★</b><span>Avg. Rating</span></div>
+      </div>
+    </div>
+    <div class="band-visual"></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">No. 04 · From Real Homes</span>
+      <h2>What people say <em>after hanging it.</em></h2>
+    </div>
+    <div class="quotes reveal">
+      <div class="quote">
+        <div class="stars">★★★★★</div>
+        <p>The story card is what made this feel like a gift rather than decor. My mother reads it to guests.</p>
+        <div class="who">— Ananya R., Pune</div>
+      </div>
+      <div class="quote">
+        <div class="stars">★★★★★</div>
+        <p>Ordered Gilded Lotus for our new pooja corner — the finishing is far better than I expected at this price.</p>
+        <div class="who">— Suresh K., Bengaluru</div>
+      </div>
+      <div class="quote">
+        <div class="stars">★★★★★</div>
+        <p>Used the mood finder tool without much hope, honestly, and it matched exactly the piece I ended up loving.</p>
+        <div class="who">— Farah M., Mumbai</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap reveal">
+    <div class="cta">
+      <h2>Ready to find your <em>piece?</em></h2>
+      <p>Browse the full collection, or tell us the room and we'll shortlist three for you.</p>
+      <a href="shop.html" class="btn">Browse the Collection</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo">Chitra <em>Story</em></div>
+        <p>Hand-finished paintings for Indian homes, each shipped with the story behind it.</p>
+      </div>
+      <div>
+        <h5>Shop</h5>
+        <ul>
+          <li><a href="shop.html">Full Collection</a></li>
+          <li><a href="shop.html">Heritage Edit</a></li>
+          <li><a href="shop.html">Devotional</a></li>
+          <li><a href="shop.html">Custom Sizing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Studio</h5>
+        <ul>
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="contact.html">Trade & Bulk</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Get In Touch</h5>
+        <ul>
+          <li>+91 00000 00000</li>
+          <li>hello@chitrastory.in</li>
+          <li>Pune, Maharashtra</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Chitra Story. All rights reserved.</span>
+      <span>Privacy · Shipping · Terms</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/910000000000" target="_blank" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.5-1.5-1.8-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.1-.5-.1-.1-.6-1.4-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.2L2 22l4.9-1.3C8.4 21.6 10.2 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.2.9.9-3.1-.2-.3C4 14.9 3.6 13.5 3.6 12c0-4.6 3.8-8.4 8.4-8.4s8.4 3.8 8.4 8.4-3.8 8.2-8.4 8.2z"/></svg>
+</a>
+
+<script>
+  // scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
+  }, {threshold:0.15});
+  reveals.forEach(el=>io.observe(el));
+
+  // mood finder
+  const moods = {
+    calm:{title:"Cool & Neutral Edit", desc:"Muted greens and soft ochres — start with 'Monsoon Green' or 'Sahyadri Dusk' for a reading corner or bedroom."},
+    warm:{title:"Earth & Terracotta Edit", desc:"'Ochre Courtyard' and 'Terracotta Bazaar' bring warmth to a living room without overpowering it."},
+    bold:{title:"Statement Edit", desc:"'Terracotta Bazaar' at a larger size works as a single anchor piece above a sofa or console."},
+    devotional:{title:"Devotional Edit", desc:"'Gilded Lotus' is hand-finished with gold leaf detailing, sized for a pooja corner or entryway."},
+    playful:{title:"Bright & Festive Edit", desc:"'Marigold Morning' suits a hallway or kids' study — bright without being loud."},
+    heritage:{title:"Heritage Edit", desc:"Warli and folk-tradition pieces like 'Ochre Courtyard' carry regional stories on their placards."}
+  };
+  document.querySelectorAll('.mood-chip').forEach(chip=>{
+    chip.addEventListener('click', ()=>{
+      document.querySelectorAll('.mood-chip').forEach(c=>c.classList.remove('picked'));
+      chip.classList.add('picked');
+      const m = moods[chip.dataset.mood];
+      const result = document.getElementById('finderResult');
+      result.innerHTML = `<span class="eyebrow">Matched Mood</span><h4>${m.title}</h4><p>${m.desc}</p><a href="shop.html" class="btn" style="margin-top:16px; width:fit-content;">See these pieces →</a>`;
+    });
+  });
+</script>
+
+</body>
+</html>
