@@ -1,0 +1,561 @@
+<section class="vastu-section">
+
+  <div class="page-width">
+
+    <div class="vastu-wrapper">
+
+      <!-- LEFT SIDE -->
+      <div class="vastu-left">
+
+        <div class="vastu-wheel">
+
+          <div class="compass-line line-1"></div>
+          <div class="compass-line line-2"></div>
+          <div class="compass-line line-3"></div>
+          <div class="compass-line line-4"></div>
+
+          <div class="direction north" data-direction="north">NORTH</div>
+
+          <div class="direction north-east" data-direction="north-east">
+            NORTH<br>EAST
+          </div>
+
+          <div class="direction east" data-direction="east">
+            EAST
+          </div>
+
+          <div class="direction south-east" data-direction="south-east">
+            SOUTH<br>EAST
+          </div>
+
+          <div class="direction south" data-direction="south">
+            SOUTH
+          </div>
+
+          <div class="direction south-west" data-direction="south-west">
+            SOUTH<br>WEST
+          </div>
+
+          <div class="direction west" data-direction="west">
+            WEST
+          </div>
+
+          <div class="direction north-west" data-direction="north-west">
+            NORTH<br>WEST
+          </div>
+
+          <!-- CENTER -->
+          <div class="center-circle">
+            <div class="pointer pointer-top"></div>
+            <div class="pointer pointer-right"></div>
+            <div class="pointer pointer-bottom"></div>
+            <div class="pointer pointer-left"></div>
+            <div class="center-text">
+              <strong>SELECT</strong>
+              <br>
+              A DIRECTION
+              <br>
+              <small>to explore paintings</small>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- RIGHT SIDE -->
+      <div class="vastu-right">
+
+        <span class="badge">DIRECTION</span>
+
+        <h2 id="directionTitle">North</h2>
+
+        <img id="directionImage" src="" alt="">
+
+        <p id="directionDescription">Hover any direction.</p>
+
+        <div id="directionBenefits" class="benefit-box">
+          <div class="benefit-card"><span>🪙</span><p>Wealth</p></div>
+          <div class="benefit-card"><span>💼</span><p>Career</p></div>
+          <div class="benefit-card"><span>☀️</span><p>Opportunities</p></div>
+          <div class="benefit-card"><span>🏆</span><p>Success</p></div>
+        </div>
+
+        <div class="direction-products">
+          <h3>Recommended Paintings</h3>
+          <div id="productGrid"></div>
+          <a id="shopCollection" class="shop-button">EXPLORE PAINTINGS →</a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+
+.vastu-section{
+  padding:80px 20px;
+  background:#faf7f0;
+}
+
+.vastu-wrapper{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:70px;
+  max-width:1300px;
+  margin:auto;
+}
+
+/* LEFT COMPASS */
+.vastu-left{
+  width:55%;
+  display:flex;
+  justify-content:center;
+}
+
+.vastu-wheel{
+  width:560px;
+  height:560px;
+  border-radius:50%;
+  position:relative;
+  border:2px solid #d6b46a;
+  background:radial-gradient(circle,#ffffff 0%,#fbf5ea 70%);
+  box-shadow:0 15px 40px rgba(0,0,0,.08);
+  animation:compassFloat 5s ease-in-out infinite;
+}
+
+@keyframes compassFloat{
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(-8px); }
+}
+
+/* INNER LINES */
+.compass-line{
+  position:absolute;
+  width:100%;
+  height:1px;
+  background:#e8d9bd;
+  top:50%;
+  left:0;
+  transform-origin:center;
+  z-index:1;
+}
+.line-1{ transform:translateY(-50%) rotate(24deg); }
+.line-2{ transform:translateY(-50%) rotate(65deg); }
+.line-3{ transform:translateY(-50%) rotate(114deg); }
+.line-4{ transform:translateY(-50%) rotate(158deg); }
+
+/* DIRECTIONS */
+.direction{
+  position:absolute;
+  font-size:20px;
+  font-weight:600;
+  letter-spacing:.5px;
+  color:#222;
+  cursor:pointer;
+  transition:.4s ease;
+  text-align:center;
+  z-index:5;
+}
+.direction:hover{
+  color:#c79b4b;
+  transform:scale(1.15);
+}
+
+.north{ top:75px; left:50%; transform:translateX(-50%); }
+.south{ bottom:75px; left:50%; transform:translateX(-50%); }
+.east{ right:75px; top:50%; transform:translateY(-50%); }
+.west{ left:75px; top:50%; transform:translateY(-50%); }
+.north-east{ right:110px; top:120px; }
+.north-west{ left:110px; top:120px; }
+.south-east{ right:110px; bottom:120px; }
+.south-west{ left:110px; bottom:120px; }
+
+/* CENTER */
+.center-circle{
+  position:absolute;
+  width:190px;
+  height:190px;
+  border-radius:50%;
+  background:#fff;
+  border:1px solid #d8b56a;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  box-shadow:0 5px 25px rgba(0,0,0,.12);
+  z-index:10;
+  transition:.5s;
+}
+.center-circle.active{
+  box-shadow:0 0 25px rgba(184,138,60,.45), 0 0 60px rgba(184,138,60,.25);
+}
+
+.center-text{ font-size:17px; line-height:1.5; color:#333; }
+.center-text small{ font-size:13px; }
+
+/* GOLD POINTERS */
+.pointer{
+  position:absolute;
+  width:0;
+  height:0;
+  border-left:15px solid transparent;
+  border-right:15px solid transparent;
+  border-bottom:35px solid #c79b4b;
+  opacity:.3;
+  transition:.5s ease;
+}
+.pointer-top{ top:-35px; left:50%; transform:translateX(-50%); }
+.pointer-bottom{ bottom:-35px; left:50%; transform:translateX(-50%) rotate(180deg); }
+.pointer-left{ left:-35px; top:50%; transform:translateY(-50%) rotate(-90deg); }
+.pointer-right{ right:-35px; top:50%; transform:translateY(-50%) rotate(90deg); }
+.pointer.active{ filter:drop-shadow(0 0 10px #c79b4b); }
+
+/* RIGHT CONTENT */
+.vastu-right{ width:45%; color:#222; }
+
+.badge{
+  background:#eee3d2;
+  padding:8px 18px;
+  border-radius:20px;
+  font-size:13px;
+  letter-spacing:2px;
+}
+
+.vastu-right h2{
+  font-family:serif;
+  font-size:55px;
+  margin:25px 0;
+  color:#222 !important;
+}
+
+.vastu-right p{
+  font-size:18px;
+  line-height:1.8;
+  color:#555 !important;
+}
+
+#directionImage{
+  width:320px;
+  height:320px;
+  object-fit:cover;
+  border-radius:5px;
+  border:1px solid #e5d5b7;
+  background:#f5efe5;
+  display:block;
+}
+
+/* Hover/direction-change fade for image + benefits */
+#directionImage,
+#directionBenefits{
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity .4s ease, transform .4s ease;
+}
+#directionImage.fade-in,
+#directionBenefits.fade-in{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.direction-products{ margin-top:30px; }
+
+#productGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  min-height:20px;
+}
+
+.product-card{
+  text-align:center;
+  animation:productFade .5s ease;
+}
+
+.product-card img{
+  width:100%;
+  height:120px;
+  object-fit:cover;
+  border-radius:8px;
+}
+
+.product-card h4{ font-size:14px; margin:8px 0; }
+.product-card a{ text-decoration:none; color:#222; }
+
+@keyframes productFade{
+  from{ opacity:0; transform:translateY(20px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
+.shop-button{
+  display:inline-block;
+  margin-top:30px;
+  background:#171717;
+  color:white !important;
+  padding:18px 40px;
+  text-decoration:none;
+  border-radius:4px;
+  font-size:14px;
+  letter-spacing:1px;
+  transition:.3s;
+}
+.shop-button:hover{ background:#c79b4b; }
+
+/* ACTIVE DIRECTION LABEL */
+.direction.active{
+  color:#b88a3c;
+  transform:scale(1.18);
+  font-weight:700;
+  text-shadow:0 0 12px rgba(184,138,60,.5);
+}
+
+.benefit-box{
+  display:flex;
+  gap:35px;
+  margin-top:30px;
+  background:#fff;
+  padding:25px;
+  border-radius:10px;
+  box-shadow:0 5px 20px rgba(0,0,0,.05);
+}
+.benefit-card{ text-align:center; min-width:70px; }
+.benefit-card span{ font-size:28px; }
+.benefit-card p{ margin-top:8px; font-size:14px; color:#444; }
+
+/* MOBILE */
+@media(max-width:900px){
+  .vastu-wrapper{ flex-direction:column; }
+  .vastu-left, .vastu-right{ width:100%; }
+  .vastu-wheel{ width:350px; height:350px; }
+  .direction{ font-size:12px; }
+  .center-circle{ width:120px; height:120px; }
+}
+
+@media(max-width:700px){
+  #productGrid{ grid-template-columns:repeat(2,1fr); }
+  .benefit-box{ gap:15px; justify-content:center; }
+}
+
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const directions   = document.querySelectorAll(".direction");
+  const title         = document.getElementById("directionTitle");
+  const image          = document.getElementById("directionImage");
+  const description = document.getElementById("directionDescription");
+  const benefits       = document.getElementById("directionBenefits");
+  const shopBtn      = document.getElementById("shopCollection");
+  const centerCircle = document.querySelector(".center-circle");
+
+  const pointerTop    = document.querySelector(".pointer-top");
+  const pointerRight  = document.querySelector(".pointer-right");
+  const pointerBottom = document.querySelector(".pointer-bottom");
+  const pointerLeft   = document.querySelector(".pointer-left");
+
+  // Which pointer arms light up for each compass direction
+  const pointerMap = {
+    "north":       ["top"],
+    "north-east":  ["top", "right"],
+    "east":        ["right"],
+    "south-east":  ["right", "bottom"],
+    "south":       ["bottom"],
+    "south-west":  ["bottom", "left"],
+    "west":        ["left"],
+    "north-west":  ["left", "top"]
+  };
+
+  // Fallback icons, applied in order to whatever benefit text comes from the block settings
+  const icons = ["🪙", "💼", "☀️", "🏆", "🕊️", "🌿", "❤️", "🚪"];
+
+  // Data comes straight from the section's blocks, keyed by a handleized direction name
+  const vastuData = {
+    {% for block in section.blocks %}
+      "{{ block.settings.direction_name | handleize }}": {
+        title: {{ block.settings.direction_name | json }},
+        image: {{ block.settings.direction_image | image_url: width: 700 | json }},
+        description: {{ block.settings.description | json }},
+        benefits: {{ block.settings.benefits | json }}.split(",").map(function (b) { return b.trim(); }),
+        collection: {{ block.settings.collection.handle | json }},
+        link: {{ block.settings.button_link | json }}
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  };
+
+  let currentDirection = null;
+
+  function setActiveDirectionLabel(direction) {
+    directions.forEach(function (el) {
+      el.classList.toggle("active", el.dataset.direction === direction);
+    });
+  }
+
+  function setActivePointers(direction) {
+    [pointerTop, pointerRight, pointerBottom, pointerLeft].forEach(function (p) {
+      p.style.opacity = "0.3";
+      p.classList.remove("active");
+    });
+    (pointerMap[direction] || []).forEach(function (side) {
+      const el = side === "top" ? pointerTop
+               : side === "right" ? pointerRight
+               : side === "bottom" ? pointerBottom
+               : pointerLeft;
+      el.style.opacity = "1";
+      el.classList.add("active");
+    });
+  }
+
+  function loadProducts(collection) {
+    const grid = document.getElementById("productGrid");
+    if (!collection) {
+      grid.innerHTML = "";
+      return;
+    }
+    grid.innerHTML = "Loading...";
+    fetch("/collections/" + collection + "/products.json?limit=3")
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        grid.innerHTML = "";
+        (data.products || []).forEach(function (product) {
+          const price = product.variants && product.variants[0] ? product.variants[0].price : "";
+          const img   = product.images && product.images[0] ? product.images[0].src : "";
+          grid.innerHTML +=
+            '<div class="product-card">' +
+              '<a href="/products/' + product.handle + '">' +
+                '<img src="' + img + '" alt="' + product.title + '">' +
+                '<h4>' + product.title + '</h4>' +
+                '<p>₹' + price + '</p>' +
+              '</a>' +
+            '</div>';
+        });
+      })
+      .catch(function () {
+        grid.innerHTML = "";
+      });
+  }
+
+  function changeDirection(direction) {
+    const data = vastuData[direction];
+    if (!data || direction === currentDirection) return;
+    currentDirection = direction;
+
+    setActiveDirectionLabel(direction);
+    setActivePointers(direction);
+    centerCircle.classList.add("active");
+
+    // fade out, swap content, fade back in — this is what makes the
+    // image + benefits visibly "follow" the hovered direction
+    image.classList.remove("fade-in");
+    benefits.classList.remove("fade-in");
+
+    title.textContent = data.title;
+    description.textContent = data.description;
+    image.src = data.image;
+    image.alt = data.title + " direction painting";
+
+    benefits.innerHTML = "";
+    data.benefits.forEach(function (text, i) {
+      benefits.innerHTML +=
+        '<div class="benefit-card">' +
+          '<span>' + (icons[i] || "✨") + '</span>' +
+          '<p>' + text + '</p>' +
+        '</div>';
+    });
+
+    // force reflow so the fade-in transition re-triggers every time
+    void image.offsetWidth;
+    image.classList.add("fade-in");
+    benefits.classList.add("fade-in");
+
+    shopBtn.href = data.link || (data.collection ? "/collections/" + data.collection : "#");
+    loadProducts(data.collection);
+  }
+
+  directions.forEach(function (item) {
+    item.addEventListener("mouseenter", function () {
+      changeDirection(this.dataset.direction);
+    });
+    item.addEventListener("click", function () {
+      changeDirection(this.dataset.direction);
+    });
+  });
+
+  // Initialize with the first configured direction so the panel isn't empty on load
+  if (directions.length) {
+    changeDirection(directions[0].dataset.direction);
+  }
+
+});
+</script>
+
+{% schema %}
+{
+  "name": "Premium Vastu Compass",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "direction",
+      "name": "Vastu Direction",
+      "settings": [
+        {
+          "type": "text",
+          "id": "direction_name",
+          "label": "Direction Name",
+          "default": "North"
+        },
+        {
+          "type": "image_picker",
+          "id": "direction_image",
+          "label": "Direction Painting Image"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Direction Description",
+          "default": "Attracts positive energy and prosperity."
+        },
+        {
+          "type": "textarea",
+          "id": "benefits",
+          "label": "Benefits (use comma)",
+          "default": "Wealth, Career, Success"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select Product Collection"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Shop Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Premium Vastu Compass",
+      "blocks": [
+        { "type": "direction" },
+        { "type": "direction" },
+        { "type": "direction" },
+        { "type": "direction" },
+        { "type": "direction" },
+        { "type": "direction" },
+        { "type": "direction" },
+        { "type": "direction" }
+      ]
+    }
+  ]
+}
+{% endschema %}
