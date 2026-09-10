@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Our Art Stands Apart</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Karla:wght@400;500;600;700&display=swap');
+
+  * { box-sizing: border-box; }
+  body{ margin:0; font-family:'Karla', Arial, sans-serif; }
+
+  :root{
+    --bg-dark:#181d14;
+    --bg-panel:#14170f;
+    --gold:#c9975a;
+    --cream:#f3ede0;
+    --line:rgba(201,151,90,0.35);
+  }
+
+  .waa-section{
+    background:var(--bg-panel);
+    padding:0;
+    position:relative;
+  }
+
+  .waa-wrapper{
+    display:flex;
+    max-width:1400px;
+    margin:0 auto;
+    min-height:760px;
+    position:relative;
+  }
+
+  /* LEFT: room photo */
+  .waa-photo{
+    width:42%;
+    min-height:100%;
+    flex-shrink:0;
+    position:relative;
+    overflow:hidden;
+  }
+  .waa-photo .waa-photo-img{
+    position:absolute;
+    inset:0;
+    background-size:cover;
+    background-position:center;
+    animation:waaKenBurns 18s ease-in-out infinite alternate;
+  }
+  @keyframes waaKenBurns{
+    from{ transform:scale(1); }
+    to{ transform:scale(1.08); }
+  }
+  .waa-photo::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(to right, rgba(20,23,15,0.55) 0%, rgba(20,23,15,0) 22%),
+      linear-gradient(to top, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 30%);
+    z-index:1;
+    pointer-events:none;
+  }
+  .waa-photo-caption{
+    position:absolute;
+    left:28px;
+    bottom:28px;
+    z-index:2;
+    color:var(--cream);
+    font-family:'Cormorant Garamond', Georgia, serif;
+    font-style:italic;
+    font-size:19px;
+    letter-spacing:.3px;
+    text-shadow:0 2px 12px rgba(0,0,0,.5);
+  }
+  .waa-photo-caption span{
+    display:block;
+    font-family:'Karla', Arial, sans-serif;
+    font-style:normal;
+    font-size:10px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-top:6px;
+  }
+
+  /* RIGHT: dark panel content */
+  .waa-content{
+    width:58%;
+    background:
+      radial-gradient(circle at 15% 0%, rgba(201,151,90,0.10), transparent 45%),
+      radial-gradient(circle at 100% 100%, rgba(201,151,90,0.07), transparent 50%),
+      var(--bg-dark);
+    padding:60px 56px 44px;
+    display:flex;
+    flex-direction:column;
+    position:relative;
+  }
+
+  .waa-heading{
+    font-family:'Cormorant Garamond', Georgia, serif;
+    font-weight:500;
+    font-size:clamp(32px, 3.4vw, 46px);
+    color:var(--cream);
+    text-align:center;
+    margin:0;
+    opacity:0;
+    animation:waaFadeUp .8s ease forwards;
+  }
+  .waa-heading .accent{
+    color:var(--gold);
+    font-style:italic;
+    background:linear-gradient(90deg, #e3b579, var(--gold), #e3b579);
+    background-size:200% auto;
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:waaShimmer 4s linear infinite;
+  }
+  @keyframes waaShimmer{
+    to{ background-position:200% center; }
+  }
+  @keyframes waaFadeUp{
+    from{ opacity:0; transform:translateY(14px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  .waa-divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    margin:16px 0 10px;
+    opacity:0;
+    animation:waaFadeUp .8s ease .1s forwards;
+  }
+  .waa-divider span{
+    display:block;
+    width:60px;
+    height:1px;
+    background:linear-gradient(90deg, transparent, var(--line));
+  }
+  .waa-divider span:last-child{
+    background:linear-gradient(90deg, var(--line), transparent);
+  }
+  .waa-divider i{
+    width:7px; height:7px;
+    border:1px solid var(--gold);
+    background:rgba(201,151,90,0.15);
+    transform:rotate(45deg);
+    display:block;
+  }
+
+  .waa-subheading{
+    text-align:center;
+    font-size:12px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin:0 0 34px;
+    font-weight:600;
+    opacity:0;
+    animation:waaFadeUp .8s ease .2s forwards;
+  }
+
+  .waa-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:14px;
+    flex:1;
+  }
+
+  .waa-card{
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:28px 14px 22px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    background:linear-gradient(180deg, rgba(201,151,90,0.03), rgba(201,151,90,0) 60%);
+    transition:border-color .35s ease, background .35s ease, transform .35s ease, box-shadow .35s ease;
+    opacity:0;
+    animation:waaFadeUp .7s ease forwards;
+  }
+  .waa-card:nth-child(1){ animation-delay:.05s; }
+  .waa-card:nth-child(2){ animation-delay:.10s; }
+  .waa-card:nth-child(3){ animation-delay:.15s; }
+  .waa-card:nth-child(4){ animation-delay:.20s; }
+  .waa-card:nth-child(5){ animation-delay:.25s; }
+  .waa-card:nth-child(6){ animation-delay:.30s; }
+  .waa-card:nth-child(7){ animation-delay:.35s; }
+  .waa-card:nth-child(8){ animation-delay:.40s; }
+
+  .waa-card:hover{
+    border-color:var(--gold);
+    background:linear-gradient(180deg, rgba(201,151,90,0.12), rgba(201,151,90,0.02) 70%);
+    transform:translateY(-6px);
+    box-shadow:0 16px 30px -14px rgba(201,151,90,0.35);
+  }
+
+  .waa-icon{
+    width:64px;
+    height:64px;
+    border-radius:50%;
+    border:1px solid var(--line);
+    background:radial-gradient(circle, rgba(201,151,90,0.14), rgba(201,151,90,0) 70%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:18px;
+    flex-shrink:0;
+    transition:border-color .35s ease, box-shadow .35s ease, transform .35s ease;
+  }
+  .waa-card:hover .waa-icon{
+    border-color:var(--gold);
+    box-shadow:0 0 0 6px rgba(201,151,90,0.08), 0 0 18px rgba(201,151,90,0.35);
+    transform:scale(1.06);
+  }
+  .waa-icon svg{ width:32px; height:32px; transition:transform .35s ease; }
+  .waa-card:hover .waa-icon svg{ transform:scale(1.08); }
+
+  .waa-card h3{
+    font-family:'Karla', Arial, sans-serif;
+    font-weight:500;
+    font-size:16px;
+    line-height:1.3;
+    color:var(--cream);
+    margin:0 0 10px;
+  }
+
+  .waa-card .waa-rule{
+    width:22px;
+    height:1px;
+    background:var(--gold);
+    opacity:.6;
+    transition:width .35s ease;
+  }
+  .waa-card:hover .waa-rule{ width:34px; }
+
+  .waa-footer{
+    text-align:center;
+    margin-top:38px;
+    opacity:0;
+    animation:waaFadeUp .8s ease .45s forwards;
+  }
+  .waa-footer .flourish{
+    width:1px;
+    height:22px;
+    background:linear-gradient(to bottom, transparent, var(--gold));
+    margin:0 auto 16px;
+  }
+  .waa-footer .line1{
+    font-size:12px;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:10px;
+  }
+  .waa-footer .line2{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:rgba(243,237,224,0.75);
+  }
+  .waa-footer .heart{ color:var(--gold); font-size:11px; }
+
+  /* MOBILE */
+  @media (max-width:1000px){
+    .waa-wrapper{ flex-direction:column; min-height:auto; }
+    .waa-photo, .waa-content{ width:100%; }
+    .waa-photo{ height:320px; }
+    .waa-content{ padding:44px 20px 40px; }
+    .waa-grid{ grid-template-columns:repeat(2, 1fr); }
+  }
+  @media (max-width:480px){
+    .waa-card{ padding:22px 10px 18px; }
+    .waa-icon{ width:54px; height:54px; }
+    .waa-icon svg{ width:26px; height:26px; }
+    .waa-card h3{ font-size:14px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="waa-section">
+  <div class="waa-wrapper">
+
+    <!-- LEFT: room photo -->
+    <div class="waa-photo">
+      <div class="waa-photo-img" style="background-image:url('https://images.unsplash.com/photo-1567016432779-094069958ea5?w=1200&q=80');"></div>
+      <div class="waa-photo-caption">
+        A space, transformed
+        <span>Chitra Story Originals</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: content panel -->
+    <div class="waa-content">
+
+      <h2 class="waa-heading">Why Our Art Stands <span class="accent">Apart</span></h2>
+      <div class="waa-divider"><span></span><i></i><span></span></div>
+      <p class="waa-subheading">Expertise That Brings Art To Life</p>
+
+      <div class="waa-grid">
+
+        <div class="waa-card">
+          <div class="waa-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="#c9975a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 14 L24 8 L38 14 L38 34 L24 40 L10 34 Z"/>
+              <path d="M10 14 L24 20 L38 14"/>
+              <path d="M24 20 L24 40"/>
+            </svg>
+          </div>
+          <h3>380 GSM<br>Canvas</h3>
+          <span class="waa-rule"></span>
+        </div>
+
+        <div class="waa-card">
+          <div class="waa-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="#c9975a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="8" height="8"/>
+              <rect x="20" y="9" width="8" height="8"/>
+              <rect x="31" y="9" width="8" height="8"/>
+              <rect x="9" y="20" width="8" height="8"/>
+              <rect x="20" y="20" width="8" height="8"/>
+              <rect x="31" y="20" width="8" height="8"/>
+              <rect x="9" y="31" width="8" height="8"/>
+              <rect x="20" y="31" width="8" height="8"/>
+              <rect x="31" y="31" width="8" height="8"/>
+            </svg>
+          </div>
+          <h3>12 Color<br>Giclee Printing</h3>
+          <span class="waa-rule"></span>
+        </div>
+
+        <div class="waa-card">
+          <div class="waa-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="#c9975a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 10 C22 8 28 14 24 22 C20 30 24 36 24 40" />
+              <path d="M14 10 C10 16 10 24 16 28"/>
+              <circle cx="14" cy="10" r="2" fill="#c9975a" stroke="none"/>
+              <path d="M6 30 L14 30 L10 40 Z"/>
+            </svg>
+          </div>
+          <h3>Free<br>Shipping</h3>
+          <span class="waa-rule"></span>
+        </div>
+
+        <div class="waa-card">
+          <div class="waa-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="#c9975a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="24" cy="24" r="15"/>
+              <circle cx="24" cy="24" r="2.4" fill="#c9975a" stroke="none"/>
+              <path d="M24 9 L26 20 L37 24 L26 28 L24 39 L22 28 L11 24 L22 20 Z"/>
+            </svg>
+          </div>
+          <h3>Special Vastu<br>Collection</h3>
+          <span class="waa-rule"></span>
+        </div>
+
+        <div class="waa-card">
+          <div class="waa-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="#c9975a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="6" y="18" width="22" height="14" rx="1.5"/>
+              <path d="M28 22 H36 L42 28 V32 H28 Z"/>
+              <circle cx="15" cy="35" r="3"/>
+              <circle cx="35" cy="35" r="3"/>
+            </svg>
+          </div>
+          <h3>Free<br>Shipping</h3>
+          <span class="waa-rule"></span>
+        </div>
+
+        <div class="waa-card">
+          <div class="waa-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="#c9975a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="10" y="10" width="28" height="28" rx="1.5"/>
+              <path d="M24 4 V10 M20 6 H28"/>
+            </svg>
+          </div>
+          <h3>Ready<br>to Hang</h3>
+          <span class="waa-rule"></span>
+        </div>
+
+        <div class="waa-card">
+          <div class="waa-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="#c9975a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M24 6 L40 13 V27 C40 35 33 41 24 43 C15 41 8 35 8 27 V13 Z"/>
+              <path d="M18 24 L22 28 L30 19"/>
+            </svg>
+          </div>
+          <h3>Secured<br>Packaging</h3>
+          <span class="waa-rule"></span>
+        </div>
+
+        <div class="waa-card">
+          <div class="waa-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="#c9975a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="8" y="10" width="24" height="20" rx="1.5"/>
+              <circle cx="15" cy="17" r="2"/>
+              <path d="M8 26 L17 19 L23 24 L32 16"/>
+              <path d="M30 30 L42 42 M42 30 L30 42"/>
+            </svg>
+          </div>
+          <h3>Customizable<br>Paintings</h3>
+          <span class="waa-rule"></span>
+        </div>
+
+      </div>
+
+      <div class="waa-footer">
+        <div class="flourish"></div>
+        <div class="line1">Every Detail. Every Stroke. Every Masterpiece.</div>
+        <div class="line2">Crafted With Passion <span class="heart">&#9825;</span> Delivered With Care.</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>
