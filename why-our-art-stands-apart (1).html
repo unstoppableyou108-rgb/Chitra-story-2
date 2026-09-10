@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Our Art Stands Apart</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+
+body{
+  font-family:'Karla', Arial, sans-serif;
+  background:#0d0d0a;
+}
+
+.wsa-section{
+  background:#14140d;
+  padding:44px 0;
+  display:flex;
+  justify-content:center;
+}
+
+.wsa-frame{
+  width:1050px;
+  max-width:100%;
+  height:650px;
+  display:flex;
+  border-radius:8px;
+  overflow:hidden;
+  box-shadow:0 50px 100px rgba(0,0,0,.5), 0 0 0 1px rgba(222,146,72,.12);
+}
+
+/* LEFT: room image */
+.wsa-visual{
+  width:42%;
+  height:100%;
+  position:relative;
+  flex-shrink:0;
+}
+
+.wsa-visual img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.wsa-visual::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(13,13,10,0) 40%, rgba(13,13,10,.75) 100%),
+             linear-gradient(90deg, rgba(13,13,10,.28) 0%, rgba(13,13,10,0) 22%);
+}
+
+.wsa-visual-frame{
+  position:absolute;
+  inset:14px;
+  border:1px solid rgba(248,237,224,.35);
+  pointer-events:none;
+}
+
+.wsa-visual-caption{
+  position:absolute;
+  left:30px;
+  bottom:28px;
+  right:30px;
+  font-family:'Fraunces', Georgia, serif;
+  font-style:italic;
+  font-weight:400;
+  font-size:19px;
+  line-height:1.4;
+  color:#F8EDE0;
+  z-index:1;
+}
+
+.wsa-visual-caption::before{
+  content:"";
+  display:block;
+  width:34px;
+  height:1px;
+  background:#DE9248;
+  margin-bottom:12px;
+}
+
+/* RIGHT: content */
+.wsa-content{
+  width:58%;
+  background:
+    radial-gradient(circle at 88% -10%, rgba(222,146,72,.16), transparent 45%),
+    radial-gradient(circle at -10% 110%, rgba(139,140,92,.14), transparent 45%),
+    #1c1c11;
+  padding:44px 44px 30px;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+}
+
+.wsa-eyebrow{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-family:'Karla', sans-serif;
+  font-size:11.5px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:#DE9248;
+  margin-bottom:12px;
+}
+.wsa-eyebrow::before{
+  content:"";
+  width:20px;
+  height:1px;
+  background:#DE9248;
+}
+
+.wsa-heading{
+  font-family:'Fraunces', Georgia, serif;
+  font-weight:400;
+  font-size:39px;
+  line-height:1.15;
+  color:#F8EDE0;
+  letter-spacing:.2px;
+}
+
+.wsa-heading em{
+  font-style:italic;
+  font-weight:500;
+  background:linear-gradient(90deg,#F3B673,#DE9248);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.wsa-sub{
+  margin-top:12px;
+  font-size:14.5px;
+  color:#B9B8A6;
+  max-width:430px;
+  line-height:1.65;
+}
+
+.wsa-grid{
+  margin-top:28px;
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:16px;
+  flex:1;
+}
+
+.wsa-card{
+  background:rgba(248,237,224,.025);
+  border:1px solid rgba(222,146,72,.22);
+  border-radius:6px;
+  padding:24px 12px 20px;
+  justify-content:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:13px;
+  transition:border-color .25s, background .25s;
+}
+
+.wsa-card:hover{
+  border-color:rgba(222,146,72,.55);
+  background:rgba(222,146,72,.06);
+}
+
+.wsa-icon-ring{
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, rgba(222,146,72,.22), rgba(222,146,72,.05));
+  border:1px solid rgba(222,146,72,.4);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.wsa-icon{
+  width:24px;
+  height:24px;
+  color:#EFAE68;
+}
+.wsa-icon svg{ width:100%; height:100%; }
+
+.wsa-card-label{
+  font-family:'Karla', sans-serif;
+  font-size:13.5px;
+  line-height:1.35;
+  color:#EDE7D9;
+  font-weight:500;
+  letter-spacing:.1px;
+}
+
+.wsa-footer{
+  margin-top:24px;
+  text-align:center;
+}
+
+.wsa-footer-rule{
+  width:100%;
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(222,146,72,.4), transparent);
+  margin-bottom:18px;
+}
+
+.wsa-footer-line1{
+  font-family:'Fraunces', Georgia, serif;
+  font-style:italic;
+  font-size:14.5px;
+  color:#EFAE68;
+}
+
+.wsa-footer-line2{
+  margin-top:7px;
+  font-size:10.5px;
+  letter-spacing:2.4px;
+  text-transform:uppercase;
+  color:#8B8C5C;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:900px){
+  .wsa-frame{
+    width:94%;
+    height:auto;
+    flex-direction:column;
+  }
+  .wsa-visual{
+    width:100%;
+    height:240px;
+  }
+  .wsa-content{
+    width:100%;
+    padding:34px 26px 28px;
+  }
+  .wsa-heading{ font-size:31px; }
+}
+
+@media(max-width:560px){
+  .wsa-section{ padding:0; }
+  .wsa-frame{ width:100%; border-radius:0; box-shadow:none; }
+  .wsa-visual{ height:190px; }
+  .wsa-visual-frame{ inset:10px; }
+  .wsa-content{ padding:28px 18px 26px; }
+  .wsa-heading{ font-size:26px; }
+  .wsa-sub{ font-size:13px; }
+
+  .wsa-grid{
+    grid-template-columns:repeat(2, 1fr);
+    gap:10px;
+  }
+  .wsa-card{ padding:17px 8px; }
+  .wsa-icon-ring{ width:42px; height:42px; }
+  .wsa-icon{ width:20px; height:20px; }
+  .wsa-card-label{ font-size:12.5px; }
+}
+
+</style>
+</head>
+<body>
+
+<section class="wsa-section">
+  <div class="wsa-frame">
+
+    <!-- LEFT: lifestyle image -->
+    <div class="wsa-visual">
+      <img src="IMAGE_URL_HERE" alt="Chitra Story painting styled in a living room">
+      <div class="wsa-visual-frame"></div>
+      <div class="wsa-visual-caption">Every canvas finds its place.</div>
+    </div>
+
+    <!-- RIGHT: content -->
+    <div class="wsa-content">
+      <div class="wsa-eyebrow">Expertise that brings art to life</div>
+      <h2 class="wsa-heading">Why Our Art Stands <em>Apart</em></h2>
+      <p class="wsa-sub">From canvas to hand-finished brushwork, every Chitra Story piece is made to feel at home in yours.</p>
+
+      <div class="wsa-grid">
+
+        <div class="wsa-card">
+          <div class="wsa-icon-ring"><div class="wsa-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="8" y="10" width="32" height="28" rx="1"/><path d="M8 16h32M14 10v28M20 10v28"/></svg>
+          </div></div>
+          <div class="wsa-card-label">380 GSM<br>Museum Canvas</div>
+        </div>
+
+        <div class="wsa-card">
+          <div class="wsa-icon-ring"><div class="wsa-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M32 8l8 8-18 18-9 2 2-9z"/><path d="M27 13l8 8"/></svg>
+          </div></div>
+          <div class="wsa-card-label">Hand-Finished<br>Brushwork</div>
+        </div>
+
+        <div class="wsa-card">
+          <div class="wsa-icon-ring"><div class="wsa-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="24" cy="24" r="17"/><path d="M31 17l-5 10-10 5 5-10z"/></svg>
+          </div></div>
+          <div class="wsa-card-label">Vastu-Friendly<br>Collection</div>
+        </div>
+
+        <div class="wsa-card">
+          <div class="wsa-icon-ring"><div class="wsa-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="10" y="12" width="28" height="24" rx="1"/><path d="M18 6v6M30 6v6"/></svg>
+          </div></div>
+          <div class="wsa-card-label">Ready<br>to Hang</div>
+        </div>
+
+        <div class="wsa-card">
+          <div class="wsa-icon-ring"><div class="wsa-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 34l28-28 8 8-28 28-8-8z"/><path d="M27 15l6 6M22 20l4 4M17 25l4 4"/></svg>
+          </div></div>
+          <div class="wsa-card-label">Custom<br>Sizes</div>
+        </div>
+
+        <div class="wsa-card">
+          <div class="wsa-icon-ring"><div class="wsa-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="7" width="24" height="24" rx="1"/><path d="M13 25l6-7 5 5 4-5 3 4"/><circle cx="27" cy="30" r="9"/><path d="M27 26v4l3 2"/></svg>
+          </div></div>
+          <div class="wsa-card-label">Made<br>to Order</div>
+        </div>
+
+      </div>
+
+      <div class="wsa-footer">
+        <div class="wsa-footer-rule"></div>
+        <div class="wsa-footer-line1">Every detail. Every stroke. Every masterpiece.</div>
+        <div class="wsa-footer-line2">Crafted with passion · Delivered with care</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>
