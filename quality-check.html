@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quality Check — Chitra Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:      #F7F2E8;
+    --panel:      #FBF8F1;
+    --ink:        #241F19;
+    --ink-soft:   #6B6255;
+    --gold:       #A9812F;
+    --gold-soft:  #D8B96A;
+    --teal:       #2E5B58;
+    --line:       #E3D9C2;
+  }
+
+  *{ box-sizing: border-box; }
+
+  body{
+    margin:0;
+    background: var(--cream);
+    font-family: 'Jost', sans-serif;
+    color: var(--ink);
+  }
+
+  .qc-section{
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 88px 32px 56px;
+  }
+
+  /* ---------- Header ---------- */
+  .qc-eyebrow{
+    text-align:center;
+    font-size: 13px;
+    letter-spacing: 0.32em;
+    color: var(--ink-soft);
+    margin: 0 0 14px;
+    font-weight: 500;
+  }
+
+  .qc-title{
+    text-align:center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(40px, 6vw, 64px);
+    margin: 0 0 22px;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+  }
+
+  .qc-rule{
+    width: 64px;
+    height: 2px;
+    background: var(--gold);
+    margin: 0 auto 30px;
+  }
+
+  .qc-subhead{
+    text-align:center;
+    font-size: 15px;
+    letter-spacing: 0.14em;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 16px;
+  }
+
+  .qc-desc{
+    text-align:center;
+    max-width: 620px;
+    margin: 0 auto 72px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Grid ---------- */
+  .qc-grid{
+    display:grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 28px 20px;
+  }
+
+  .qc-item{
+    text-align:center;
+    opacity:0;
+    transform: translateY(14px);
+    animation: qc-rise 0.7s ease forwards;
+  }
+  .qc-item:nth-child(1){ animation-delay: 0.05s; }
+  .qc-item:nth-child(2){ animation-delay: 0.15s; }
+  .qc-item:nth-child(3){ animation-delay: 0.25s; }
+  .qc-item:nth-child(4){ animation-delay: 0.35s; }
+  .qc-item:nth-child(5){ animation-delay: 0.45s; }
+  .qc-item:nth-child(6){ animation-delay: 0.55s; }
+
+  @keyframes qc-rise{
+    to{ opacity:1; transform: translateY(0); }
+  }
+
+  .qc-badge{
+    width: 128px;
+    height: 128px;
+    margin: 0 auto 22px;
+    border-radius: 50%;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+  }
+
+  .qc-badge::before{
+    content:"";
+    position:absolute;
+    inset: -6px;
+    border-radius:50%;
+    border: 1px solid var(--gold-soft);
+    opacity: 0.55;
+  }
+
+  .qc-badge svg{
+    width: 46px;
+    height: 46px;
+    stroke: var(--teal);
+    fill:none;
+    stroke-width: 1.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .qc-name{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 19px;
+    letter-spacing: 0.02em;
+    margin: 0 0 6px;
+    line-height: 1.3;
+  }
+
+  .qc-line{
+    width: 26px;
+    height: 1px;
+    background: var(--gold);
+    margin: 10px auto 12px;
+  }
+
+  .qc-text{
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    padding: 0 6px;
+  }
+
+  /* ---------- Footer bar ---------- */
+  .qc-footer{
+    margin-top: 76px;
+    padding-top: 26px;
+    border-top: 1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+
+  .qc-footer svg{
+    width: 18px;
+    height: 18px;
+    stroke: var(--gold);
+    fill:none;
+    stroke-width: 1.3;
+  }
+
+  .qc-footer-text{
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    font-weight: 500;
+    color: var(--ink);
+    text-align:center;
+  }
+
+  .qc-mark{
+    text-align:center;
+    margin-top: 18px;
+    font-family:'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 980px){
+    .qc-grid{ grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 560px){
+    .qc-section{ padding: 56px 20px 40px; }
+    .qc-grid{ grid-template-columns: repeat(2, 1fr); gap: 40px 16px; }
+    .qc-badge{ width: 104px; height: 104px; }
+    .qc-badge svg{ width: 38px; height: 38px; }
+    .qc-footer{ gap: 12px; }
+    .qc-footer-text{ letter-spacing: 0.14em; font-size: 11.5px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="qc-section">
+
+  <p class="qc-eyebrow">from our studio</p>
+  <h2 class="qc-title">Quality Check</h2>
+  <div class="qc-rule"></div>
+  <p class="qc-subhead">HOW OUR ART STANDS OUT</p>
+  <p class="qc-desc">Every Chitra Story artwork is a perfect blend of technology, artistry and craftsmanship, created to bring lasting beauty and positive energy to your space.</p>
+
+  <div class="qc-grid">
+
+    <div class="qc-item">
+      <div class="qc-badge">
+        <svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="8" rx="1"/><path d="M7 8V4h10v4"/><path d="M7 16v4h10v-4"/><circle cx="17" cy="11" r="0.6" fill="var(--teal)" stroke="none"/></svg>
+      </div>
+      <h3 class="qc-name">12 Colour<br>Giclée Printer</h3>
+      <div class="qc-line"></div>
+      <p class="qc-text">Museum-quality printing with 12 vibrant colours for richer detail, smooth gradients and true-to-life tones.</p>
+    </div>
+
+    <div class="qc-item">
+      <div class="qc-badge">
+        <svg viewBox="0 0 24 24"><path d="M4 6c4-2 12-2 16 0v13c-4-2-12-2-16 0V6z"/><path d="M4 6c2 1.5 2 3 0 4M8 5.4c1.5 1.4 1.5 3 0 4.2M12 5c1.5 1.5 1.5 3.2 0 4.5"/></svg>
+      </div>
+      <h3 class="qc-name">380 GSM<br>Premium Canvas</h3>
+      <div class="qc-line"></div>
+      <p class="qc-text">Thick, durable and gallery-grade canvas that adds beautiful texture and ensures long-lasting artwork.</p>
+    </div>
+
+    <div class="qc-item">
+      <div class="qc-badge">
+        <svg viewBox="0 0 24 24"><path d="M12 20V9"/><path d="M12 9c0-3 2-5 5-5-1 3-2 5-5 5z"/><path d="M12 13c0-2.5-1.8-4-4.5-4 1 2.5 2 4 4.5 4z"/><path d="M12 17c0-2-1.5-3.3-3.8-3.3 0.9 2 1.8 3.3 3.8 3.3z"/></svg>
+      </div>
+      <h3 class="qc-name">Artistically<br>Curated Designs</h3>
+      <div class="qc-line"></div>
+      <p class="qc-text">Thoughtfully created by our artists to bring harmony, positivity and a timeless appeal to your walls.</p>
+    </div>
+
+    <div class="qc-item">
+      <div class="qc-badge">
+        <svg viewBox="0 0 24 24"><rect x="4" y="5" width="14" height="14" rx="1"/><path d="M4 5l3 3M18 5l-3 3M4 19l3-3M18 19l-3-3"/></svg>
+      </div>
+      <h3 class="qc-name">Gallery Wrap<br>Finish</h3>
+      <div class="qc-line"></div>
+      <p class="qc-text">Neatly stretched on sturdy pinewood frames with a clean, modern finish. Ready to hang, no extra framing needed.</p>
+    </div>
+
+    <div class="qc-item">
+      <div class="qc-badge">
+        <svg viewBox="0 0 24 24"><path d="M14 3l6 6-8 8-6 1 1-6 7-9z"/><path d="M12 19H5"/></svg>
+      </div>
+      <h3 class="qc-name">Protective<br>Varnish Coating</h3>
+      <div class="qc-line"></div>
+      <p class="qc-text">A subtle protective layer that enhances colours, resists dust and moisture, and keeps your art beautiful for years.</p>
+    </div>
+
+    <div class="qc-item">
+      <div class="qc-badge">
+        <svg viewBox="0 0 24 24"><path d="M4 8l8-4 8 4-8 4-8-4z"/><path d="M4 8v8l8 4 8-4V8"/><path d="M12 12v8"/></svg>
+      </div>
+      <h3 class="qc-name">Safe &amp; Secure<br>Packaging</h3>
+      <div class="qc-line"></div>
+      <p class="qc-text">Multiple layers of protection to ensure your art reaches you in perfect condition, wherever you are.</p>
+    </div>
+
+  </div>
+
+  <div class="qc-footer">
+    <svg viewBox="0 0 24 24"><path d="M12 21c0-6-4-8-4-13a4 4 0 018 0c0 5-4 7-4 13z"/></svg>
+    <p class="qc-footer-text">more than art &nbsp;|&nbsp; a brighter space for a better you</p>
+    <svg viewBox="0 0 24 24"><path d="M12 21c0-6-4-8-4-13a4 4 0 018 0c0 5-4 7-4 13z"/></svg>
+  </div>
+  <p class="qc-mark">chitra story</p>
+
+</section>
+
+</body>
+</html>
