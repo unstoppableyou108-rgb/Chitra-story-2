@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Limited Time Offer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+
+  body{
+    margin:0;
+    padding:0;
+    background:#EFEFEF; /* just so the widget is visible against the preview canvas */
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:100vh;
+    font-family: 'Poppins', Arial, sans-serif;
+  }
+
+  .offer-box{
+    width: 364px;
+    height: 175px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #C68A2E 0%, #B9791F 100%);
+    display:flex;
+    flex-direction: column;
+    box-shadow: 0 6px 16px rgba(150, 100, 20, 0.28);
+    position: relative;
+  }
+
+  .offer-title{
+    text-align:center;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.06em;
+    color: #FFF7EA;
+    padding: 10px 0 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .offer-title .spark{
+    color: #FFE3A3;
+  }
+
+  .offer-card{
+    flex:1;
+    margin: 0 8px 8px;
+    background: #FFFBF3;
+    border-radius: 8px;
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+    position: relative;
+  }
+
+  /* coupon notches */
+  .offer-card::before,
+  .offer-card::after{
+    content:"";
+    position:absolute;
+    width: 16px;
+    height: 16px;
+    background:#B9791F;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .offer-card::before{ left: -8px; }
+  .offer-card::after{ right: -8px; }
+
+  .offer-item{
+    flex:1;
+    text-align:center;
+    padding: 0 4px;
+    position:relative;
+  }
+
+  .offer-item + .offer-item{
+    border-left: 1.5px dashed #E0C88C;
+  }
+
+  .offer-amount{
+    display:flex;
+    align-items:baseline;
+    justify-content:center;
+    gap: 1px;
+    line-height: 1;
+  }
+
+  .offer-rupee{
+    font-size: 14px;
+    font-weight: 700;
+    color:#B9791F;
+    align-self: flex-start;
+    margin-top: 1px;
+  }
+
+  .offer-number{
+    font-size: 25px;
+    font-weight: 800;
+    color:#1E1A14;
+    letter-spacing: -0.5px;
+  }
+
+  .offer-off{
+    font-size: 10px;
+    font-weight: 700;
+    color:#B9791F;
+    align-self: flex-end;
+    margin-bottom: 2px;
+  }
+
+  .offer-code{
+    margin-top: 7px;
+    display:inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    color:#7A5417;
+    background: #FBEDD2;
+    border: 1px dashed #D8B36C;
+    border-radius: 20px;
+    padding: 2px 8px;
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+
+<div class="offer-box">
+  <div class="offer-title"><span class="spark">✦</span>&nbsp; Limited Time Offer! &nbsp;<span class="spark">✦</span></div>
+  <div class="offer-card">
+
+    <div class="offer-item">
+      <div class="offer-amount">
+        <span class="offer-rupee">₹</span><span class="offer-number">200</span><span class="offer-off">OFF</span>
+      </div>
+      <div class="offer-code">SAVE200</div>
+    </div>
+
+    <div class="offer-item">
+      <div class="offer-amount">
+        <span class="offer-rupee">₹</span><span class="offer-number">500</span><span class="offer-off">OFF</span>
+      </div>
+      <div class="offer-code">SAVE501</div>
+    </div>
+
+    <div class="offer-item">
+      <div class="offer-amount">
+        <span class="offer-rupee">₹</span><span class="offer-number">1000</span><span class="offer-off">OFF</span>
+      </div>
+      <div class="offer-code">SAVE1001</div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
