@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quality Check</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Karla:wght@400;500;600;700&display=swap');
+
+  * { box-sizing: border-box; }
+  body{ margin:0; font-family:'Karla', Arial, sans-serif; background:#fff; }
+
+  :root{
+    --cream:#FBF6EC;
+    --ink:#1F2A3D;
+    --gold:#B9862F;
+    --gold-light:#D9B26B;
+  }
+
+  .qc-outer{
+    display:flex;
+    justify-content:center;
+    padding:20px;
+    background:#fff;
+  }
+
+  .qc-wrapper{
+    width:1100px;
+    height:400px;
+    max-width:100%;
+    background:var(--cream);
+    border-radius:10px;
+    padding:20px 30px 16px;
+    display:flex;
+    flex-direction:column;
+    overflow-y:auto;
+  }
+
+  /* HEADER */
+  .qc-header{ text-align:center; margin-bottom:14px; }
+  .qc-eyebrow{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    color:var(--ink);
+    font-size:12px;
+    letter-spacing:5px;
+    text-transform:lowercase;
+    margin-bottom:4px;
+  }
+  .qc-eyebrow span{ width:60px; height:1px; background:var(--gold); display:block; }
+
+  .qc-title{
+    font-family:'Playfair Display', Georgia, serif;
+    font-style:italic;
+    font-weight:700;
+    font-size:38px;
+    letter-spacing:1px;
+    color:var(--ink);
+    margin:2px 0 2px;
+  }
+  .qc-title-rule{
+    width:60px;
+    height:2px;
+    background:var(--gold);
+    margin:0 auto 8px;
+  }
+  .qc-subtitle{
+    font-size:13px;
+    letter-spacing:4px;
+    font-weight:700;
+    color:var(--ink);
+    margin-bottom:2px;
+  }
+
+  /* ROW */
+  .qc-row{
+    position:relative;
+    flex:1;
+    display:flex;
+  }
+  .qc-road-path{ display:none; }
+  .qc-steps{
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    gap:0;
+    flex:1;
+    position:relative;
+    z-index:1;
+  }
+
+  .qc-step{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width:150px;
+    flex-shrink:0;
+    text-align:center;
+  }
+
+  .qc-circle-wrap{
+    position:relative;
+    width:96px;
+    height:96px;
+    margin-bottom:12px;
+  }
+  .qc-circle{
+    width:96px;
+    height:96px;
+    border-radius:50%;
+    border:2px solid var(--gold);
+    overflow:hidden;
+    box-shadow:0 6px 16px rgba(0,0,0,0.08);
+  }
+  .qc-circle img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .qc-number{
+    position:absolute;
+    top:-12px;
+    left:50%;
+    transform:translateX(-50%);
+    width:26px;
+    height:26px;
+    border-radius:50%;
+    background:var(--gold);
+    color:#fff;
+    font-size:11px;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 3px 8px rgba(0,0,0,0.18);
+    z-index:2;
+  }
+  .qc-icon{
+    position:absolute;
+    bottom:-12px;
+    left:50%;
+    transform:translateX(-50%);
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    background:var(--gold);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 3px 8px rgba(0,0,0,0.18);
+    z-index:2;
+  }
+  .qc-icon svg{ width:15px; height:15px; }
+
+  .qc-heading{
+    font-size:13.5px;
+    font-weight:700;
+    letter-spacing:1px;
+    color:var(--ink);
+    line-height:1.35;
+    margin:0;
+    text-transform:uppercase;
+  }
+
+  .qc-arrow{
+    align-self:center;
+    color:var(--gold);
+    font-size:16px;
+    margin:0 2px;
+    padding-top:36px;
+    flex-shrink:0;
+  }
+
+  /* FOOTER */
+  .qc-footer{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    margin-top:10px;
+    padding-top:10px;
+    border-top:1px solid rgba(185,134,47,0.25);
+  }
+  .qc-footer-line{
+    flex:1;
+    max-width:120px;
+    height:1px;
+    background:rgba(185,134,47,0.4);
+  }
+  .qc-footer-text{
+    font-size:10.5px;
+    letter-spacing:2px;
+    font-weight:700;
+    color:var(--ink);
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .qc-lotus{ width:16px; height:16px; flex-shrink:0; }
+
+  /* MOBILE: fixed 290 x 500 total — all 6 steps shown as a winding road-map grid */
+  @media (max-width:900px){
+    .qc-outer{ padding:10px; }
+    .qc-wrapper{
+      width:290px;
+      height:500px;
+      padding:16px 0 12px;
+    }
+    .qc-header{ padding:0 14px; margin-bottom:8px; }
+    .qc-eyebrow{ font-size:9px; letter-spacing:3px; gap:8px; }
+    .qc-eyebrow span{ width:26px; }
+    .qc-title{ font-size:22px; }
+    .qc-title-rule{ width:36px; margin-bottom:4px; }
+    .qc-subtitle{ font-size:9px; letter-spacing:2px; }
+
+    .qc-steps{
+      position:relative;
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      grid-template-rows:repeat(2, auto);
+      column-gap:6px;
+      row-gap:22px;
+      padding:6px 14px 4px;
+      flex:1;
+      align-content:start;
+    }
+
+    .qc-road-path{
+      display:block;
+      position:absolute;
+      top:10px; left:14px; right:14px; bottom:10px;
+      width:calc(100% - 28px);
+      height:calc(100% - 20px);
+      z-index:0;
+      pointer-events:none;
+    }
+
+    .qc-step{
+      position:relative;
+      z-index:1;
+      width:auto;
+    }
+
+    .qc-circle-wrap{
+      width:78px;
+      height:78px;
+      margin:0 auto 10px;
+      animation:qcPopIn .5s ease backwards;
+    }
+    .qc-step:nth-child(1) .qc-circle-wrap{ animation-delay:.02s; }
+    .qc-step:nth-child(2) .qc-circle-wrap{ animation-delay:.10s; }
+    .qc-step:nth-child(3) .qc-circle-wrap{ animation-delay:.18s; }
+    .qc-step:nth-child(4) .qc-circle-wrap{ animation-delay:.26s; }
+    .qc-step:nth-child(5) .qc-circle-wrap{ animation-delay:.34s; }
+    .qc-step:nth-child(6) .qc-circle-wrap{ animation-delay:.42s; }
+
+    .qc-circle{
+      width:78px;
+      height:78px;
+      box-shadow:0 8px 18px rgba(31,42,61,0.18), 0 0 0 4px #fff;
+      transition:transform .3s ease, box-shadow .3s ease;
+    }
+    .qc-step:active .qc-circle{
+      transform:scale(0.95);
+      box-shadow:0 4px 10px rgba(31,42,61,0.2), 0 0 0 4px #fff;
+    }
+    .qc-number{ width:22px; height:22px; font-size:9.5px; top:-8px; box-shadow:0 3px 8px rgba(0,0,0,0.25), 0 0 0 3px var(--cream); }
+    .qc-icon{ width:24px; height:24px; bottom:-8px; box-shadow:0 3px 8px rgba(0,0,0,0.25), 0 0 0 3px var(--cream); }
+    .qc-icon svg{ width:13px; height:13px; }
+    .qc-heading{ font-size:11px; letter-spacing:.4px; }
+
+    .qc-arrow{ display:none; }
+
+    .qc-footer{ padding:6px 14px 0; margin-top:8px; flex-wrap:wrap; }
+    .qc-footer-line{ max-width:40px; }
+    .qc-footer-text{ font-size:7.5px; letter-spacing:1px; white-space:normal; text-align:center; }
+    .qc-lotus{ width:12px; height:12px; }
+  }
+
+  @keyframes qcPopIn{
+    from{ opacity:1; transform:scale(0.88) translateY(6px); }
+    to{ opacity:1; transform:scale(1) translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="qc-outer">
+  <div class="qc-wrapper">
+
+    <div class="qc-header">
+      <div class="qc-eyebrow"><span></span>from our studio<span></span></div>
+      <h2 class="qc-title">Quality Check</h2>
+      <div class="qc-title-rule"></div>
+      <div class="qc-subtitle">Our Art. Our Promise.</div>
+    </div>
+
+    <div class="qc-row">
+      <svg class="qc-road-path" viewBox="0 0 300 240" preserveAspectRatio="none">
+        <path d="M50 40 L250 40 C 292 62, 8 168, 50 200 L250 200"
+              fill="none" stroke="#B9862F" stroke-width="2" stroke-linecap="round" opacity="0.65"/>
+      </svg>
+      <div class="qc-steps" id="qcRow"></div>
+    </div>
+
+    <div class="qc-footer">
+      <svg class="qc-lotus" viewBox="0 0 24 24" fill="none" stroke="#B9862F" stroke-width="1.3"><path d="M12 20c-4-1-6-4-6-8 3 1 5 3 6 6 1-3 3-5 6-6 0 4-2 7-6 8Z"/><path d="M12 20V4"/></svg>
+      <span class="qc-footer-line"></span>
+      <span class="qc-footer-text">More Than Art &nbsp;|&nbsp; A Brighter Space For A Better You</span>
+      <span class="qc-footer-line"></span>
+      <svg class="qc-lotus" viewBox="0 0 24 24" fill="none" stroke="#B9862F" stroke-width="1.3"><path d="M12 20c-4-1-6-4-6-8 3 1 5 3 6 6 1-3 3-5 6-6 0 4-2 7-6 8Z"/><path d="M12 20V4"/></svg>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   EDIT YOUR 6 STEPS HERE — image + heading only, no extra text
+   ============================================================ */
+const qualitySteps = [
+  {
+    number: "01",
+    heading: "Colour<br>Check",
+    image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400&q=80",
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="8" rx="1"/><path d="M8 8V4h8v4"/><path d="M8 16v4h8v-4"/></svg>'
+  },
+  {
+    number: "02",
+    heading: "Canvas<br>Quality",
+    image: "https://images.unsplash.com/photo-1595429035839-c99c298ffdde?w=400&q=80",
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>'
+  },
+  {
+    number: "03",
+    heading: "Artwork<br>Details",
+    image: "https://images.unsplash.com/photo-1579762593175-20226054cad0?w=400&q=80",
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>'
+  },
+  {
+    number: "04",
+    heading: "Frame<br>Craft",
+    image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=400&q=80",
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="1"/><rect x="8" y="8" width="8" height="8" rx="0.5"/></svg>'
+  },
+  {
+    number: "05",
+    heading: "Protective<br>Varnish",
+    image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&q=80",
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>'
+  },
+  {
+    number: "06",
+    heading: "Safe & Secure<br>Packaging",
+    image: "https://images.unsplash.com/photo-1607344645866-009c320b63e0?w=400&q=80",
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>'
+  }
+];
+
+const row = document.getElementById("qcRow");
+row.innerHTML = qualitySteps.map(function(step, i){
+  const arrow = i < qualitySteps.length - 1 ? '<span class="qc-arrow">&#8250;</span>' : '';
+  return (
+    '<div class="qc-step">' +
+      '<div class="qc-circle-wrap">' +
+        '<span class="qc-number">' + step.number + '</span>' +
+        '<div class="qc-circle"><img src="' + step.image + '" alt="' + step.heading.replace(/<br>/g," ") + '"></div>' +
+        '<span class="qc-icon">' + step.icon + '</span>' +
+      '</div>' +
+      '<h3 class="qc-heading">' + step.heading + '</h3>' +
+    '</div>' +
+    arrow
+  );
+}).join("");
+</script>
+
+</body>
+</html>
