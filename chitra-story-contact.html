@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact Us — Chitra Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#fff}
+
+/* ===== Chitra Story contact section (scoped) ===== */
+.cs-contact{
+  --cream:#F8EDE0;
+  --cream-soft:#FBF3E7;
+  --rust:#C1602E;
+  --rust-deep:#A34A22;
+  --sun:#DE9248;
+  --olive:#8B8C5C;
+  --ink:#3D2E22;
+  --ink-deep:#2A1F17;
+  --line:#E9D6BF;
+  font-family:'Karla',system-ui,sans-serif;color:var(--ink);
+  max-width:900px;margin:0 auto;padding:56px 20px 72px;box-sizing:border-box
+}
+.cs-contact *{box-sizing:border-box}
+
+/* heading */
+.cs-head{text-align:center;margin-bottom:40px}
+.cs-eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--rust)}
+.cs-head h1{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(32px,5vw,46px);margin:12px 0 10px;line-height:1.15}
+.cs-head h1 em{color:var(--rust);font-style:italic}
+.cs-head p{max-width:520px;margin:0 auto;font-size:15px;line-height:1.7;color:#6b5a4b}
+
+/* two cards */
+.cs-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.cs-card{
+  position:relative;display:flex;flex-direction:column;
+  background:var(--cream-soft);border:1px solid var(--line);border-top:2px solid var(--sun);
+  padding:34px 32px 30px;text-decoration:none;color:inherit;min-height:320px;
+  transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease
+}
+.cs-card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(61,46,34,.12);border-color:var(--rust)}
+.cs-icon{width:26px;height:26px;color:var(--sun);margin-bottom:22px}
+.cs-label{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--olive);font-weight:700}
+.cs-card h2{font-family:'Fraunces',serif;font-style:italic;font-weight:400;font-size:25px;margin:8px 0 12px}
+.cs-card p{font-size:13.5px;line-height:1.85;color:#6b5a4b;margin:0 0 auto}
+.cs-link{
+  display:flex;justify-content:space-between;align-items:flex-end;margin-top:28px;
+  font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--ink);
+  padding-bottom:6px;border-bottom:1px solid var(--line);transition:color .25s,border-color .25s
+}
+.cs-link svg{width:16px;height:16px;transition:transform .25s}
+.cs-card:hover .cs-link{color:var(--rust);border-color:var(--rust)}
+.cs-card:hover .cs-link svg{transform:translate(3px,-3px)}
+
+/* dark response bar */
+.cs-bar{
+  margin-top:48px;background:var(--ink-deep);color:#fff;
+  display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;
+  padding:26px 32px
+}
+.cs-bar-left{display:flex;align-items:center;gap:18px}
+.cs-clock{width:42px;height:42px;border:1px solid rgba(222,146,72,.35);background:rgba(222,146,72,.08);display:flex;align-items:center;justify-content:center;color:var(--sun);flex-shrink:0}
+.cs-clock svg{width:18px;height:18px}
+.cs-bar b{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.cs-bar small{display:block;margin-top:4px;font-size:11.5px;color:rgba(255,255,255,.55)}
+.cs-bar-right{font-family:'Fraunces',serif;font-style:italic;font-size:14px;color:var(--sun)}
+
+/* topics */
+.cs-topics{margin-top:72px;text-align:center}
+.cs-topics .cs-eyebrow{color:var(--olive);font-size:10px}
+.cs-topics h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(26px,4vw,34px);margin:10px 0 28px;letter-spacing:.02em}
+.cs-faq{text-align:left;border-top:1px solid var(--line)}
+.cs-faq details{border-bottom:1px solid var(--line)}
+.cs-faq summary{
+  list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:20px 4px;font-family:'Fraunces',serif;font-size:17px
+}
+.cs-faq summary::-webkit-details-marker{display:none}
+.cs-faq summary::after{content:"+";font-family:'Karla',sans-serif;font-size:22px;color:var(--rust);transition:transform .25s}
+.cs-faq details[open] summary::after{transform:rotate(45deg)}
+.cs-faq details[open] summary{color:var(--rust)}
+.cs-faq .ans{padding:0 4px 22px;font-size:14px;line-height:1.8;color:#6b5a4b;max-width:720px}
+.cs-faq .ans a{color:var(--rust-deep)}
+
+/* address */
+.cs-addr{margin-top:44px;text-align:center;font-size:12.5px;line-height:1.8;color:#8a7766}
+.cs-addr b{display:block;color:var(--ink);letter-spacing:.14em;text-transform:uppercase;font-size:11px;margin-bottom:4px}
+
+@media(max-width:720px){
+  .cs-cards{grid-template-columns:1fr}
+  .cs-card{min-height:0;padding:28px 24px}
+  .cs-bar{padding:22px 20px}
+}
+@media(prefers-reduced-motion:reduce){.cs-card,.cs-link svg{transition:none}}
+</style>
+</head>
+<body>
+
+<section class="cs-contact">
+
+  <div class="cs-head">
+    <span class="cs-eyebrow">Get in touch</span>
+    <h1>We'd love to <em>hear from you</em></h1>
+    <p>Questions about a painting, a custom order or your delivery? Reach us the way that suits you best.</p>
+  </div>
+
+  <div class="cs-cards">
+    <a class="cs-card" href="mailto:iasparidhijain@gmail.com">
+      <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 7l9 6.5L21 7"/></svg>
+      <span class="cs-label">Email us</span>
+      <h2>For everything else</h2>
+      <p>Order queries, custom sizing, bulk orders, gifting and press enquiries. Drop us an email and we'll get back to you within 24 hours.</p>
+      <span class="cs-link">iasparidhijain@gmail.com
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12L12 4M5 4h7v7"/></svg>
+      </span>
+    </a>
+
+    <a class="cs-card" href="https://wa.me/916260577965" target="_blank" rel="noopener">
+      <svg class="cs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5z"/></svg>
+      <span class="cs-label">WhatsApp</span>
+      <h2>For order updates</h2>
+      <p>Track your order, ask about delivery, or get a quick answer about a painting. WhatsApp is our fastest channel, available Monday to Saturday, 10am to 7pm IST.</p>
+      <span class="cs-link">+91 62605 77965
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12L12 4M5 4h7v7"/></svg>
+      </span>
+    </a>
+  </div>
+
+  <div class="cs-bar">
+    <div class="cs-bar-left">
+      <span class="cs-clock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>
+      <div><b>Response times</b><small>We aim to reply to every message personally</small></div>
+    </div>
+    <div class="cs-bar-right">Email: within 24 hrs · WhatsApp: Mon–Sat, 10am–7pm</div>
+  </div>
+
+  <div class="cs-topics">
+    <span class="cs-eyebrow">What can we help with?</span>
+    <h2>Common topics</h2>
+    <div class="cs-faq">
+      <details>
+        <summary>Do you ship all over India?</summary>
+        <div class="ans">Yes. We offer free shipping all over India, and every painting is packed securely so it reaches you in perfect condition.</div>
+      </details>
+      <details>
+        <summary>Can I get a painting customised?</summary>
+        <div class="ans">Absolutely. Share your idea, size and wall space with us on WhatsApp or email and we'll guide you from there.</div>
+      </details>
+      <details>
+        <summary>How do I track my order?</summary>
+        <div class="ans">Message us on WhatsApp with your order number and we'll share the latest status right away.</div>
+      </details>
+      <details>
+        <summary>What is your return and refund policy?</summary>
+        <div class="ans">You can read the full details on our <a href="/pages/refund-return-policy">Refund &amp; Return Policy</a> page, or ask us if you're unsure about anything.</div>
+      </details>
+      <details>
+        <summary>Do you take bulk or gifting orders?</summary>
+        <div class="ans">Yes. Email us with the number of pieces and the occasion, and we'll put together the best offer for you.</div>
+      </details>
+    </div>
+  </div>
+
+  <div class="cs-addr">
+    <b>Chitra Story</b>
+    202 Varun Tower, Meera Path, Dhenu Market, Nehru Park, Indore, MP 452001
+  </div>
+
+</section>
+
+</body>
+</html>
